@@ -90,8 +90,15 @@ class ProductRepository {
   }
 
   async _countProducts(query, args) {
-    const { rows } = await this.db.query(query, args);
-    return rows.length;
+    const countQuery = `
+    SELECT 
+        COUNT(1)
+    FROM
+        (${query}) AS count_table
+    `;
+
+    const { rows } = await this.db.query(countQuery, args);
+    return Number(rows[0].count);
   }
 }
 
