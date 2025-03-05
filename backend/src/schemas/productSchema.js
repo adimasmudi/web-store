@@ -55,9 +55,19 @@ const updateProductStockSchema = {
   }
 };
 
+const deleteProductSchema = {
+  params: {
+    type: 'object',
+    properties: {
+      id: { type: 'integer' }
+    }
+  }
+};
+
 module.exports = {
   getAllProductsSchema,
   addProductSchema,
   updateProductSchema,
-  updateProductStockSchema
+  updateProductStockSchema,
+  deleteProductSchema
 };

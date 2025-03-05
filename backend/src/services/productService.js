@@ -49,6 +49,14 @@ class ProductService {
 
     return this.productRepository.updateProductStock(deltaStock, id);
   }
+
+  async deleteProduct(id) {
+    const product = await this.productRepository.getProductById(id);
+    if (!product) {
+      throw new Error(`product with id ${id} doesn't exist`);
+    }
+    return this.productRepository.deleteProduct(id);
+  }
 }
 
 module.exports = ProductService;

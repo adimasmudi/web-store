@@ -68,6 +68,20 @@ class ProductController {
         .send(errorResponse(error.message));
     }
   }
+
+  async deleteProduct(req, res) {
+    try {
+      const { id } = req.params;
+      const product = await this.productService.deleteProduct(id);
+      return res
+        .code(successCode)
+        .send(successResponse(product, 'Product deleted successfully'));
+    } catch (error) {
+      return res
+        .code(internalServerErrorCode)
+        .send(errorResponse(error.message));
+    }
+  }
 }
 
 module.exports = ProductController;

@@ -137,6 +137,19 @@ class ProductRepository {
     return rows.at(0);
   }
 
+  async deleteProduct(id) {
+    const query = `
+        DELETE FROM
+            "products" 
+        WHERE
+            id = $1
+        RETURNING id, title, price, description, category, image_path, stock, created_at, updated_at
+      `;
+
+    const { rows } = await this.db.query(query, [id]);
+    return rows.at(0);
+  }
+
   async _countProducts(query, args) {
     const countQuery = `
     SELECT 
