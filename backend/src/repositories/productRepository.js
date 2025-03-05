@@ -38,8 +38,13 @@ class ProductRepository {
   }
 
   async addProduct(requestBody) {
+    if (!requestBody.stock) {
+      requestBody.stock = 0;
+    }
+
     const { title, price, description, category, image_path, stock } =
       requestBody;
+
     const query = `
     INSERT INTO 
         "products" ("title","price","description","category","image_path","stock") 
@@ -69,10 +74,10 @@ class ProductRepository {
             "products" 
         SET
             "title" = $1,"price" = $2, "description" = $3,
-            "category" = $4,"image_path" = $5, "stock" = $6,
+            "category" = $4,"image_path" = $5,
             "updated_at" = NOW() 
         WHERE
-            id = $7
+            id = $6
         RETURNING id, title, price, description, category, image_path, stock, created_at, updated_at
       `;
 
@@ -82,7 +87,6 @@ class ProductRepository {
       description,
       category,
       image_path,
-      stock,
       id
     ]);
 
