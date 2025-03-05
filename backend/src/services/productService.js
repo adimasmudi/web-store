@@ -5,8 +5,8 @@ class ProductService {
     this.productRepository = new ProductRepository(fastify);
   }
 
-  async getAllProducts() {
-    return this.productRepository.getAllProducts();
+  async getAllProducts({ search, category }) {
+    return this.productRepository.getAllProducts(search, category);
   }
 }
 

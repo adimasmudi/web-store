@@ -9,7 +9,7 @@ class ProductController {
 
   async getAllProducts(req, res) {
     try {
-      const products = await this.productService.getAllProducts(req);
+      const products = await this.productService.getAllProducts(req.query);
       return res
         .code(successCode)
         .send(successResponse(products, 'Products retrieved successfully'));
