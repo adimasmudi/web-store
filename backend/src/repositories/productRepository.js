@@ -5,7 +5,8 @@ class ProductRepository {
     this.db = fastify.pg;
   }
 
-  async getAllProducts({ search, category, limitInt, pageInt }) {
+  async getAllProducts(queryParam) {
+    const { search, category, limitInt, pageInt } = queryParam;
     let query = `
     SELECT
         id, title, price, description, category, image_path, stock, created_at, updated_at
@@ -34,6 +35,28 @@ class ProductRepository {
 
     const { rows } = await this.db.query(query, args);
     return getPaginationInfo(rows, count, limitInt);
+  }
+
+  async addProduct(requestBody) {
+    const { title, price, description, category, image_path, stock } =
+      requestBody;
+    const query = `
+    INSERT INTO 
+        "products" ("title","price","description","category","image_path","stock") 
+    VALUES
+        ($1,$2,$3,$4,$5,$6)
+    `;
+
+    const { rows } = await this.db.query(query, [
+      title,
+      price,
+      description,
+      category,
+      image_path,
+      stock
+    ]);
+
+    return rows[0];
   }
 
   async _countProducts(query, args) {

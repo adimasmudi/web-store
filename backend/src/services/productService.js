@@ -16,6 +16,10 @@ class ProductService {
       pageInt
     });
   }
+
+  async addProduct(requestBody) {
+    return this.productRepository.addProduct(requestBody);
+  }
 }
 
 module.exports = ProductService;
