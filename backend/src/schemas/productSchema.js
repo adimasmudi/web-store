@@ -1,3 +1,5 @@
+const { type } = require('os');
+
 const getAllProductsSchema = {
   querystring: {
     type: 'object',
@@ -27,4 +29,18 @@ const addProductSchema = {
   }
 };
 
-module.exports = { getAllProductsSchema, addProductSchema };
+const updateProductSchema = {
+  params: {
+    type: 'object',
+    properties: {
+      id: { type: 'integer' }
+    }
+  },
+  ...addProductSchema
+};
+
+module.exports = {
+  getAllProductsSchema,
+  addProductSchema,
+  updateProductSchema
+};

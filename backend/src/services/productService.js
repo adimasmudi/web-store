@@ -21,6 +21,10 @@ class ProductService {
   async addProduct(requestBody) {
     return this.productRepository.addProduct(requestBody);
   }
+
+  async updateProduct(requestBody, id) {
+    return this.productRepository.updateProduct(requestBody, id);
+  }
 }
 
 module.exports = ProductService;

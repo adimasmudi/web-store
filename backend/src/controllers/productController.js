@@ -36,6 +36,20 @@ class ProductController {
         .send(errorResponse(error.message));
     }
   }
+
+  async updateProduct(req, res) {
+    try {
+      const { id } = req.params;
+      const product = await this.productService.updateProduct(req.body, id);
+      return res
+        .code(successCode)
+        .send(successResponse(product, 'Product updated successfully'));
+    } catch (error) {
+      return res
+        .code(internalServerErrorCode)
+        .send(errorResponse(error.message));
+    }
+  }
 }
 
 module.exports = ProductController;

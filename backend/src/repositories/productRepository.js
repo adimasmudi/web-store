@@ -45,6 +45,7 @@ class ProductRepository {
         "products" ("title","price","description","category","image_path","stock") 
     VALUES
         ($1,$2,$3,$4,$5,$6)
+    RETURNING id, title, price, description, category, image_path, stock, created_at, updated_at
     `;
 
     const { rows } = await this.db.query(query, [
@@ -54,6 +55,35 @@ class ProductRepository {
       category,
       image_path,
       stock
+    ]);
+
+    return rows[0];
+  }
+
+  async updateProduct(requestBody, id) {
+    const { title, price, description, category, image_path, stock } =
+      requestBody;
+
+    const query = `
+        UPDATE 
+            "products" 
+        SET
+            "title" = $1,"price" = $2, "description" = $3,
+            "category" = $4,"image_path" = $5, "stock" = $6,
+            "updated_at" = NOW() 
+        WHERE
+            id = $7
+        RETURNING id, title, price, description, category, image_path, stock, created_at, updated_at
+      `;
+
+    const { rows } = await this.db.query(query, [
+      title,
+      price,
+      description,
+      category,
+      image_path,
+      stock,
+      id
     ]);
 
     return rows[0];
