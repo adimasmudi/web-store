@@ -1,8 +1,17 @@
 {
+  "scripts": {
+    "db-setup": "knex migrate:rollback --all && knex migrate:latest",
+    "db-seed": "knex seed:run"
+  },
   "dependencies": {
-    "fastify": "^5.2.1"
+    "fastify": "^5.2.1",
+    "pg": "^8.13.3"
   },
   "devDependencies": {
-    "fastify-tsconfig": "^3.0.0"
+    "@types/node": "^22.13.9",
+    "dotenv": "^16.4.7",
+    "fastify-tsconfig": "^3.0.0",
+    "knex": "^3.1.0",
+    "ts-node": "^10.9.2"
   }
 }
