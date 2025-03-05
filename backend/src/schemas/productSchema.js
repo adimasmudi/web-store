@@ -39,8 +39,25 @@ const updateProductSchema = {
   ...addProductSchema
 };
 
+const updateProductStockSchema = {
+  params: {
+    type: 'object',
+    properties: {
+      id: { type: 'integer' }
+    }
+  },
+  body: {
+    type: 'object',
+    required: ['delta_stock'],
+    properties: {
+      delta_stock: { type: 'integer' }
+    }
+  }
+};
+
 module.exports = {
   getAllProductsSchema,
   addProductSchema,
-  updateProductSchema
+  updateProductSchema,
+  updateProductStockSchema
 };

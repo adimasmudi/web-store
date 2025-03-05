@@ -2,7 +2,8 @@ const ProductController = require('../controllers/productController');
 const {
   getAllProductsSchema,
   addProductSchema,
-  updateProductSchema
+  updateProductSchema,
+  updateProductStockSchema
 } = require('../schemas/productSchema');
 
 async function productRoutes(fastify) {
@@ -18,6 +19,12 @@ async function productRoutes(fastify) {
 
   fastify.put('/:id', { schema: updateProductSchema }, async (req, res) =>
     productController.updateProduct(req, res)
+  );
+
+  fastify.patch(
+    '/:id/stock',
+    { schema: updateProductStockSchema },
+    async (req, res) => productController.updateProductStock(req, res)
   );
 }
 

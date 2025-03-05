@@ -36,6 +36,19 @@ class ProductService {
     }
     return this.productRepository.updateProduct(requestBody, id);
   }
+
+  async updateProductStock(deltaStock, id) {
+    const product = await this.productRepository.getProductById(id);
+    if (!product) {
+      throw new Error(`product with id ${id} doesn't exist`);
+    }
+
+    if (product.stock + deltaStock < 0) {
+      throw new Error(`product stock should at least 0`);
+    }
+
+    return this.productRepository.updateProductStock(deltaStock, id);
+  }
 }
 
 module.exports = ProductService;

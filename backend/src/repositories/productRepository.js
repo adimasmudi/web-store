@@ -121,6 +121,22 @@ class ProductRepository {
     return rows.at(0);
   }
 
+  async updateProductStock(deltaStock, id) {
+    const query = `
+        UPDATE 
+            "products" 
+        SET
+            "stock" = "stock" + $1,
+            "updated_at" = NOW() 
+        WHERE
+            id = $2
+        RETURNING id, title, price, description, category, image_path, stock, created_at, updated_at
+      `;
+
+    const { rows } = await this.db.query(query, [deltaStock, id]);
+    return rows.at(0);
+  }
+
   async _countProducts(query, args) {
     const countQuery = `
     SELECT 

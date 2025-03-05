@@ -50,6 +50,24 @@ class ProductController {
         .send(errorResponse(error.message));
     }
   }
+
+  async updateProductStock(req, res) {
+    try {
+      const { delta_stock: deltaStock } = req.body;
+      const { id } = req.params;
+      const product = await this.productService.updateProductStock(
+        deltaStock,
+        id
+      );
+      return res
+        .code(successCode)
+        .send(successResponse(product, 'Product stock updated successfully'));
+    } catch (error) {
+      return res
+        .code(internalServerErrorCode)
+        .send(errorResponse(error.message));
+    }
+  }
 }
 
 module.exports = ProductController;
