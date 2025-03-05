@@ -5,8 +5,8 @@ class ProductRepository {
     this.db = fastify.pg;
   }
 
-  async getAllProducts(queryParam) {
-    const { search, category, limitInt, pageInt } = queryParam;
+  async getAllProducts(requestQuery) {
+    const { search, category, limitInt, pageInt } = requestQuery;
     let query = `
     SELECT
         id, title, price, description, category, image_path, stock, created_at, updated_at

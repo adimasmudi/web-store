@@ -5,7 +5,8 @@ class ProductService {
     this.productRepository = new ProductRepository(fastify);
   }
 
-  async getAllProducts({ search, category, limit, page }) {
+  async getAllProducts(requestQuery) {
+    const { search, category, limit, page } = requestQuery;
     const limitInt = parseInt(limit);
     const pageInt = parseInt(page);
 

@@ -7,7 +7,7 @@ const {
 async function productRoutes(fastify) {
   const productController = new ProductController(fastify);
 
-  fastify.get('/', { schema: getAllProductsSchema }, (req, res) =>
+  fastify.get('/', { schema: getAllProductsSchema }, async (req, res) =>
     productController.getAllProducts(req, res)
   );
 
