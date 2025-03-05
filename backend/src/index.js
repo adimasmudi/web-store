@@ -8,7 +8,7 @@ fastify.register(require('@fastify/postgres'), {
     `postgresql://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@localhost:5432/${process.env.DATABASE_NAME}`
 });
 
-const { productRoutes } = require('./routes/productRoute');
+const productRoutes = require('./routes/productRoute');
 
 fastify.register(productRoutes, { prefix: '/products' });
 

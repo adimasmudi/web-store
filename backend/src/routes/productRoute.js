@@ -6,4 +6,4 @@ async function productRoutes(fastify) {
   fastify.get('/', (req, res) => productController.getAllProducts(req, res));
 }
 
-module.exports = { productRoutes };
+module.exports = productRoutes;
