@@ -37,6 +37,34 @@ class ProductRepository {
     return getPaginationInfo(rows, count, limitInt);
   }
 
+  async getProductById(id) {
+    const query = `
+    SELECT
+        id, title, price, description, category, image_path, stock, created_at, updated_at
+    FROM
+        products
+    WHERE 
+        id = $1
+    `;
+
+    const { rows } = await this.db.query(query, [id]);
+    return rows.at(0);
+  }
+
+  async getProductByTitle(title) {
+    const query = `
+    SELECT
+        id, title, price, description, category, image_path, stock, created_at, updated_at
+    FROM
+        products
+    WHERE 
+        title = $1
+    `;
+
+    const { rows } = await this.db.query(query, [title]);
+    return rows.at(10);
+  }
+
   async addProduct(requestBody) {
     if (!requestBody.stock) {
       requestBody.stock = 0;
@@ -62,7 +90,7 @@ class ProductRepository {
       stock
     ]);
 
-    return rows[0];
+    return rows.at(0);
   }
 
   async updateProduct(requestBody, id) {
@@ -90,7 +118,7 @@ class ProductRepository {
       id
     ]);
 
-    return rows[0];
+    return rows.at(0);
   }
 
   async _countProducts(query, args) {
@@ -102,7 +130,7 @@ class ProductRepository {
     `;
 
     const { rows } = await this.db.query(countQuery, args);
-    return Number(rows[0].count);
+    return Number(rows.at(0).count);
   }
 }
 
