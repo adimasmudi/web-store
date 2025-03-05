@@ -21,7 +21,7 @@ const addProductSchema = {
       price: { type: 'number', minimum: 0 },
       description: { type: 'string', minLength: 5 },
       category: { type: 'string', minLength: 3 },
-      image: { type: 'string', format: 'uri' },
+      image_path: { type: 'string', format: 'uri' },
       stock: { type: 'integer', minimum: 0 }
     }
   }
