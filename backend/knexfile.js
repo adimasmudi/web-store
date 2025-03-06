@@ -1,3 +1,5 @@
+const config = require('./src/config/env/env');
+
 // Update with your config settings.
 require('dotenv').config();
 
@@ -8,9 +10,9 @@ module.exports = {
   development: {
     client: 'postgresql',
     connection: {
-      database: process.env.DATABASE_NAME,
-      user: process.env.DATABASE_USER,
-      password: process.env.DATABASE_PASSWORD
+      database: config.databaseName,
+      user: config.databaseUser,
+      password: config.databasePassword
     },
     migrations: {
       directory: './src/config/database/migrations'
@@ -23,9 +25,9 @@ module.exports = {
   staging: {
     client: 'postgresql',
     connection: {
-      database: process.env.DATABASE_NAME,
-      user: process.env.DATABASE_USER,
-      password: process.env.DATABASE_PASSWORD
+      database: config.databaseName,
+      user: config.databaseUser,
+      password: config.databasePassword
     },
     pool: {
       min: 2,
@@ -43,9 +45,9 @@ module.exports = {
   production: {
     client: 'postgresql',
     connection: {
-      database: process.env.DATABASE_NAME,
-      user: process.env.DATABASE_USER,
-      password: process.env.DATABASE_PASSWORD
+      database: config.databaseName,
+      user: config.databaseUser,
+      password: config.databasePassword
     },
     pool: {
       min: 2,

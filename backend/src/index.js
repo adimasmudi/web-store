@@ -1,11 +1,12 @@
 require('dotenv').config();
+const config = require('./config/env/env');
 const fastify = require('fastify')({
   logger: true
 });
 fastify.register(require('@fastify/postgres'), {
   connectionString:
-    process.env.DATABASE_URL ||
-    `postgresql://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@localhost:5432/${process.env.DATABASE_NAME}`
+    config.databaseURL ||
+    `postgresql://${config.databaseUser}:${config.databasePassword}@${config.databaseHost}:${config.databasePort}/${config.databaseName}`
 });
 
 const productRoutes = require('./routes/productRoute');
