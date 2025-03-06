@@ -69,7 +69,7 @@ describe('LogController', function () {
       expect(result).to.deep.equal(successResponse);
     });
 
-    it('should return error response with logs data', async function () {
+    it('should return error response', async function () {
       const errorMessage = 'limit should be integer';
       services.logService.getAllLogs.rejects(errorMessage);
       errorResponse.message = errorMessage;
