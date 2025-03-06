@@ -1,8 +1,10 @@
 const ProductRepository = require('../repositories/productRepository');
+const LogRepository = require('../repositories/logRepository');
 
 class ProductService {
   constructor(fastify) {
     this.productRepository = new ProductRepository(fastify);
+    this.logRepository = new LogRepository(fastify);
   }
 
   async getAllProducts(requestQuery) {
@@ -47,7 +49,18 @@ class ProductService {
       throw new Error(`product stock should at least 0`);
     }
 
-    return this.productRepository.updateProductStock(deltaStock, id);
+    const result = this.productRepository.updateProductStock(deltaStock, id);
+
+    const logMessage = `Stock of product with id ${id} updated from ${
+      product.stock
+    } to ${product.stock + deltaStock}`;
+    const insertErr = await this.logRepository.addLog(id, logMessage);
+
+    if (insertErr) {
+      throw new Error('error when trying to add new log');
+    }
+
+    return result;
   }
 
   async deleteProduct(id) {
