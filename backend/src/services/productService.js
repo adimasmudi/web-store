@@ -1,10 +1,7 @@
-const ProductRepository = require('../repositories/productRepository');
-const LogRepository = require('../repositories/logRepository');
-
 class ProductService {
-  constructor(fastify) {
-    this.productRepository = new ProductRepository(fastify);
-    this.logRepository = new LogRepository(fastify);
+  constructor(repositories) {
+    this.productRepository = repositories.productRepository;
+    this.logRepository = repositories.logRepository;
   }
 
   async getAllProducts(requestQuery) {

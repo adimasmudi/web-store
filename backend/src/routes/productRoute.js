@@ -1,4 +1,3 @@
-const ProductController = require('../controllers/productController');
 const {
   getAllProductsSchema,
   addProductSchema,
@@ -7,8 +6,8 @@ const {
   deleteProductSchema
 } = require('../schemas/productSchema');
 
-async function productRoutes(fastify) {
-  const productController = new ProductController(fastify);
+async function productRoutes(fastify, options) {
+  const { productController } = options;
 
   fastify.get('/', { schema: getAllProductsSchema }, async (req, res) =>
     productController.getAllProducts(req, res)

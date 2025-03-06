@@ -3,8 +3,8 @@ const { errorResponse, successResponse } = require('../utils/response');
 const { successCode, internalServerErrorCode } = require('../utils/constants');
 
 class LogController {
-  constructor(fastify) {
-    this.logService = new LogService(fastify);
+  constructor(services) {
+    this.logService = services.logService;
   }
 
   async getAllLogs(req, res) {

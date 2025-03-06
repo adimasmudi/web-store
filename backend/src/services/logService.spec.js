@@ -11,13 +11,12 @@ describe('LogService', function () {
     fastifyMock = {
       pg: dbMock
     };
-    logService = new LogService(fastifyMock);
-
     repositories = {
       logRepository: {
         getAllLogs: sinon.stub()
       }
     };
+    logService = new LogService(repositories);
 
     log = {
       id: 1,

@@ -7,8 +7,8 @@ const {
 } = require('../utils/constants');
 
 class ProductController {
-  constructor(fastify) {
-    this.productService = new ProductService(fastify);
+  constructor(services) {
+    this.productService = services.productService;
   }
 
   async getAllProducts(req, res) {

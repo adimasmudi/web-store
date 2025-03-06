@@ -1,24 +1,21 @@
 require('dotenv').config();
-const config = require('./config/env/env');
 const fastify = require('fastify')({
   logger: true
 });
-fastify.register(require('@fastify/postgres'), {
-  connectionString:
-    config.databaseURL ||
-    `postgresql://${config.databaseUser}:${config.databasePassword}@${config.databaseHost}:${config.databasePort}/${config.databaseName}`
-});
 
-const productRoutes = require('./routes/productRoute');
-const logRoutes = require('./routes/logRoute');
+const config = require('./config/env/env');
+const serverSetup = require('./server/setup');
 
-fastify.register(productRoutes, { prefix: '/products' });
-fastify.register(logRoutes, { prefix: '/logs' });
+async function startServer() {
+  try {
+    await serverSetup(fastify, config);
 
-fastify.listen({ port: 5000 }, (err, address) => {
-  if (err) {
-    console.error(err);
+    await fastify.listen({ port: config.port || 5000 });
+    console.log(`Server listening at http://localhost:${config.port || 5000}`);
+  } catch (err) {
+    fastify.log.error(err);
     process.exit(1);
   }
-  console.log(`Server listening at ${address}`);
-});
+}
+
+startServer();

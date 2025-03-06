@@ -1,8 +1,6 @@
-const LogRepository = require('../repositories/logRepository');
-
 class LogService {
-  constructor(fastify) {
-    this.logRepository = new LogRepository(fastify);
+  constructor(repositories) {
+    this.logRepository = repositories.logRepository;
   }
 
   async getAllLogs(requestQuery) {
