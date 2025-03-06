@@ -27,6 +27,7 @@ class LogRepository {
       limitInt,
       limitInt * (pageInt - 1)
     ]);
+
     return getPaginationInfo(rows, count, limitInt);
   }
 

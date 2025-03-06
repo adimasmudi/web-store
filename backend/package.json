@@ -39,7 +39,8 @@
       ".js"
     ],
     "include": [
-      "src/repositories/*.js"
+      "src/repositories/*.js",
+      "src/services/*.js"
     ],
     "exclude": [
       "src/utils/**",
