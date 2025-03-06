@@ -40,10 +40,7 @@ exports.seed = async function (knex) {
     }
   });
 
-  query += ';';
-
-  // Deletes ALL existing entries
-  await knex.raw(`DELETE FROM products;`);
+  query += ' ON CONFLICT (title) DO NOTHING;';
 
   // Bulk Insert
   await knex.raw(query, args);

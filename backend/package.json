@@ -6,7 +6,8 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "db-setup": "knex migrate:rollback --all && knex migrate:latest",
-    "db-seed": "knex seed:run"
+    "db-seed-clean": "knex seed:run --specific=clean_product.js && knex seed:run --specific=create_products_seed.js",
+    "db-seed": "knex seed:run --specific=create_products_seed.js"
   },
   "dependencies": {
     "@fastify/postgres": "^6.0.2",
