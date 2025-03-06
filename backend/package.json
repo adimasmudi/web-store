@@ -40,7 +40,8 @@
     ],
     "include": [
       "src/repositories/*.js",
-      "src/services/*.js"
+      "src/services/*.js",
+      "src/controllers/*.js"
     ],
     "exclude": [
       "src/utils/**",

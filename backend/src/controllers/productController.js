@@ -1,4 +1,3 @@
-const ProductService = require('../services/productService');
 const { errorResponse, successResponse } = require('../utils/response');
 const {
   successCode,

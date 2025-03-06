@@ -1,4 +1,3 @@
-const LogService = require('../services/logService');
 const { errorResponse, successResponse } = require('../utils/response');
 const { successCode, internalServerErrorCode } = require('../utils/constants');
 
