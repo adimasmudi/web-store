@@ -62,7 +62,7 @@ class ProductRepository {
     `;
 
     const { rows } = await this.db.query(query, [title]);
-    return rows.at(10);
+    return rows.at(0);
   }
 
   async addProduct(requestBody) {
@@ -94,8 +94,7 @@ class ProductRepository {
   }
 
   async updateProduct(requestBody, id) {
-    const { title, price, description, category, image_path, stock } =
-      requestBody;
+    const { title, price, description, category, image_path } = requestBody;
 
     const query = `
         UPDATE 

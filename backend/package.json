@@ -5,22 +5,56 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
+    "test": "mocha --timeout 10000",
+    "test:coverage": "nyc --all npm run test",
+    "test:coverage-html": "nyc --reporter=html npm run test",
     "db-setup": "knex migrate:rollback --all && knex migrate:latest",
     "db-seed-clean": "knex seed:run --specific=clean_product.js && knex seed:run --specific=create_products_seed.js",
     "db-seed": "knex seed:run --specific=create_products_seed.js"
   },
   "dependencies": {
     "@fastify/postgres": "^6.0.2",
+    "dotenv": "^16.4.7",
     "fastify": "^5.2.1",
     "joi": "^17.13.3",
     "nodemon": "^3.1.9",
     "pg": "^8.13.3"
   },
   "devDependencies": {
+    "@istanbuljs/nyc-config-babel": "^3.0.0",
     "@types/node": "^22.13.9",
-    "dotenv": "^16.4.7",
+    "chai": "^5.2.0",
+    "chai-as-promised": "^8.0.1",
+    "chai-http": "^5.1.1",
     "fastify-tsconfig": "^3.0.0",
     "knex": "^3.1.0",
+    "mocha": "^11.1.0",
+    "nyc": "^17.1.0",
+    "sinon": "^19.0.2",
+    "sinon-chai": "^4.0.0",
     "ts-node": "^10.9.2"
+  },
+  "nyc": {
+    "extension": [
+      ".js"
+    ],
+    "include": [
+      "src/repositories/*.js"
+    ],
+    "exclude": [
+      "src/utils/**",
+      "src/**/index.js",
+      "src/**/*.spec.js",
+      "test/**/*.js"
+    ]
+  },
+  "mocha": {
+    "extension": [
+      "spec.js"
+    ],
+    "globals": "global",
+    "recursive": true,
+    "require": "test/setup.mjs",
+    "spec": "src"
   }
 }
