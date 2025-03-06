@@ -1,16 +1,9 @@
 const LogService = require('./logService');
 
 describe('LogService', function () {
-  let logService, repositories, fastifyMock, dbMock, log, paginatedLogs;
+  let logService, repositories, log, paginatedLogs;
 
   beforeEach(function () {
-    dbMock = {
-      query: sinon.stub()
-    };
-
-    fastifyMock = {
-      pg: dbMock
-    };
     repositories = {
       logRepository: {
         getAllLogs: sinon.stub()
