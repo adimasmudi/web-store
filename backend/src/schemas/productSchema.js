@@ -1,5 +1,3 @@
-const { type } = require('os');
-
 const getAllProductsSchema = {
   querystring: {
     type: 'object',

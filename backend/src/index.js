@@ -9,8 +9,10 @@ fastify.register(require('@fastify/postgres'), {
 });
 
 const productRoutes = require('./routes/productRoute');
+const logRoutes = require('./routes/logRoute');
 
 fastify.register(productRoutes, { prefix: '/products' });
+fastify.register(logRoutes, { prefix: '/logs' });
 
 fastify.listen({ port: 5000 }, (err, address) => {
   if (err) {
