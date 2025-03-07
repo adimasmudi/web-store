@@ -17,6 +17,10 @@ class ProductService {
     });
   }
 
+  async getProductById(id) {
+    return this.productRepository.getProductById(id);
+  }
+
   async addProduct(requestBody) {
     const product = await this.productRepository.getProductByTitle(
       requestBody.title

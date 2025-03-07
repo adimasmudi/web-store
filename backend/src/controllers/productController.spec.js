@@ -14,6 +14,7 @@ describe('ProductController', function () {
     services = {
       productService: {
         getAllProducts: sinon.stub(),
+        getProductById: sinon.stub(),
         addProduct: sinon.stub(),
         updateProduct: sinon.stub(),
         updateProductStock: sinon.stub(),
@@ -107,6 +108,30 @@ describe('ProductController', function () {
       req.query.limit = 'abc';
 
       const result = await productController.getAllProducts(req, res);
+
+      expect(result).to.deep.equal(errorResponse);
+    });
+  });
+
+  describe('getProductById', function () {
+    it('should return success response with product data', async function () {
+      services.productService.getProductById.resolves(product);
+      successResponse.message = 'Product retrieved successfully';
+      res.send = sinon.stub().resolves(successResponse);
+
+      const result = await productController.getProductById(req, res);
+
+      expect(result).to.deep.equal(successResponse);
+    });
+
+    it('should return error response when trying to get product with id that does not exist', async function () {
+      const errorMessage = `product with id 1 doesn't exist`;
+      services.productService.getProductById.rejects(errorMessage);
+      errorResponse.message = errorMessage;
+      errorResponse.statusCode = 400;
+      res.send = sinon.stub().resolves(errorResponse);
+
+      const result = await productController.getProductById(req, res);
 
       expect(result).to.deep.equal(errorResponse);
     });

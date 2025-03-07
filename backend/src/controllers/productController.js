@@ -23,6 +23,20 @@ class ProductController {
     }
   }
 
+  async getProductById(req, res) {
+    try {
+      const { id } = req.params;
+      const products = await this.productService.getProductById(id);
+      return res
+        .code(successCode)
+        .send(successResponse(products, 'Product retrieved successfully'));
+    } catch (error) {
+      return res
+        .code(internalServerErrorCode)
+        .send(errorResponse(error.message));
+    }
+  }
+
   async addProduct(req, res) {
     try {
       const product = await this.productService.addProduct(req.body);

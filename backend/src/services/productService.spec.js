@@ -79,6 +79,25 @@ describe('ProductService', function () {
     });
   });
 
+  describe('getProductById', function () {
+    it('should return product data', async function () {
+      repositories.productRepository.getProductById.resolves(product);
+
+      const result = await productService.getProductById(1);
+
+      expect(result).to.deep.equal(product);
+    });
+
+    it('should return error if product with particular id does not exist', async function () {
+      repositories.productRepository.getProductById.resolves(undefined);
+      const errorMessage = `product with id 1 doesn't exist`;
+
+      await expect(productService.deleteProduct(1)).to.be.rejectedWith(
+        errorMessage
+      );
+    });
+  });
+
   describe('addProduct', function () {
     it('should return product data', async function () {
       repositories.productRepository.getProductByTitle.resolves(undefined);

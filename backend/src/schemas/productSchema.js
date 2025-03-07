@@ -12,6 +12,15 @@ const getAllProductsSchema = {
   }
 };
 
+const getProductByIdSchema = {
+  params: {
+    type: 'object',
+    properties: {
+      id: { type: 'integer' }
+    }
+  }
+};
+
 const addProductSchema = {
   body: {
     type: 'object',
@@ -64,6 +73,7 @@ const deleteProductSchema = {
 
 module.exports = {
   getAllProductsSchema,
+  getProductByIdSchema,
   addProductSchema,
   updateProductSchema,
   updateProductStockSchema,
