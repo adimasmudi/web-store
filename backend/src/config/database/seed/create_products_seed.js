@@ -22,26 +22,33 @@ exports.seed = async function (knex) {
 
   // Construct query
   let query = `
-    INSERT INTO 
-      "products" ("title","price","description","category","image_path","stock") 
-    VALUES
-      
-    `;
+    INSERT INTO "products" ("title", "price", "description", "category", "image_path", "stock")
+    SELECT * FROM (
+  `;
 
   const args = [];
-  data.forEach((dt, i) => {
-    query += `(?,?,?,?,?,?)`;
+  data.forEach((p, i) => {
+    query += `SELECT ?, ?::NUMERIC, ?, ?, ?, ?::INTEGER`;
     args.push(
-      ...[dt.title, dt.price, dt.description, dt.category, dt.image, dt.stock]
+      p.title,
+      p.price,
+      p.description,
+      p.category,
+      p.image,
+      Math.round(Math.random() * 100)
     );
 
     if (i < data.length - 1) {
-      query += ',';
+      query += ' UNION ALL ';
     }
   });
 
-  query += ' ON CONFLICT (title) DO NOTHING;';
+  query += `
+    ) AS "new_data" ("title", "price", "description", "category", "image_path", "stock")
+    WHERE NOT EXISTS (
+      SELECT 1 FROM "products" WHERE "products"."title" = "new_data"."title"
+    );
+  `;
 
-  // Bulk Insert
   await knex.raw(query, args);
 };
