@@ -11,17 +11,9 @@ export const getProducts = async (params: {
   page?: number;
 }) => {
   try {
-    let url = `${config.API_BASE_URL}/products?`;
+    let url = `${config.API_BASE_URL}/products`;
     let currentLimit = DEFAULT_LIMIT;
     let currentPage = 1;
-
-    if (params.search && params.search !== '') {
-      url += `&search=${params.search}`;
-    }
-
-    if (params.category && params.category !== '') {
-      url += `&category=${params.category}`;
-    }
 
     if (params.limit) {
       currentLimit = params.limit;
@@ -31,7 +23,15 @@ export const getProducts = async (params: {
       currentPage = params.page;
     }
 
-    url += `&limit=${currentLimit}&page=${currentPage}`;
+    url += `?limit=${currentLimit}&page=${currentPage}`;
+
+    if (params.search && params.search !== '') {
+      url += `&search=${params.search}`;
+    }
+
+    if (params.category && params.category !== '') {
+      url += `&category=${params.category}`;
+    }
 
     const response = await axios.get<
       SuccessResponse<GetProductsResData> | ErrorResponse
