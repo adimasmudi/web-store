@@ -1,3 +1,5 @@
+const cors = require('@fastify/cors');
+
 const ProductRepository = require('../repositories/productRepository');
 const LogRepository = require('../repositories/logRepository');
 
@@ -15,6 +17,12 @@ async function serverSetup(fastify, config) {
     connectionString:
       config.databaseURL ||
       `postgresql://${config.databaseUser}:${config.databasePassword}@${config.databaseHost}:${config.databasePort}/${config.databaseName}`
+  });
+
+  fastify.register(cors, {
+    origin: '*', // Allow all origins
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
   });
 
   const productRepository = new ProductRepository(fastify);
