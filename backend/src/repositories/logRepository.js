@@ -15,6 +15,8 @@ class LogRepository {
         products p
     ON
         l.product_id = p.id
+    AND
+      p.deleted_at IS NULL
     ORDER BY
         l.created_at DESC
     `;
