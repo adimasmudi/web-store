@@ -13,6 +13,8 @@ class ProductRepository {
     FROM
         products
     WHERE 1 = 1
+    AND 
+      "deleted_at" IS NULL
     `;
     let idx = 1;
     const args = [];
@@ -45,6 +47,8 @@ class ProductRepository {
         products
     WHERE 
         id = $1
+    AND 
+       "deleted_at" IS NULL
     `;
 
     const { rows } = await this.db.query(query, [id]);
@@ -59,6 +63,8 @@ class ProductRepository {
         products
     WHERE 
         title = $1
+    AND 
+        "deleted_at" IS NULL
     `;
 
     const { rows } = await this.db.query(query, [title]);
@@ -105,6 +111,8 @@ class ProductRepository {
             "updated_at" = NOW() 
         WHERE
             id = $6
+        AND 
+          "deleted_at" IS NULL
         RETURNING id, title, price, description, category, image_path, stock, created_at, updated_at
       `;
 
@@ -129,6 +137,8 @@ class ProductRepository {
             "updated_at" = NOW() 
         WHERE
             id = $2
+        AND 
+          "deleted_at" IS NULL
         RETURNING id, title, price, description, category, image_path, stock, created_at, updated_at
       `;
 
@@ -138,8 +148,11 @@ class ProductRepository {
 
   async deleteProduct(id) {
     const query = `
-        DELETE FROM
+        UPDATE
             "products" 
+        SET
+          "deleted_at" = NOW(),
+          "updated_at" =  NOW()
         WHERE
             id = $1
         RETURNING id, title, price, description, category, image_path, stock, created_at, updated_at
