@@ -33,8 +33,6 @@ export const getProducts = async (params: {
       url += `&category=${params.category}`;
     }
 
-    console.log('url', url);
-
     const response = await axios.get<
       SuccessResponse<GetProductsResData> | ErrorResponse
     >(url);
@@ -45,5 +43,22 @@ export const getProducts = async (params: {
       throw err.response?.data;
     }
     throw new Error('unable to get products');
+  }
+};
+
+export const deleteProduct = async (params: {
+  id: number;
+}): Promise<SuccessResponse<ProductResData> | ErrorResponse> => {
+  try {
+    const response = await axios.delete<
+      SuccessResponse<ProductResData> | ErrorResponse
+    >(`${config.API_BASE_URL}/products/${params.id}`);
+
+    return response.data;
+  } catch (err) {
+    if (axios.isAxiosError(err)) {
+      throw err.response?.data;
+    }
+    throw new Error('unable to delete product');
   }
 };

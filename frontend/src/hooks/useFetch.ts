@@ -8,7 +8,7 @@ interface UseFetchProps<T, P> {
 export const useFetch = <T, P>({ fn, params }: UseFetchProps<T, P>) => {
   const [data, setData] = useState<T | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,7 +17,7 @@ export const useFetch = <T, P>({ fn, params }: UseFetchProps<T, P>) => {
         const result = await fn(params);
         setData(result);
       } catch (err) {
-        setError((err as Error).message);
+        setError(err as Error);
       } finally {
         setIsLoading(false);
       }

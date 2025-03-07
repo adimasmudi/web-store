@@ -3,6 +3,8 @@
 import { ProductResData } from '@/data/product/dto';
 import { AppButton } from '@/components/button/Button';
 import { Trash2 } from 'lucide-react';
+import { DeleteDialogButton } from '../deleteDialog/DeleteDialog';
+import { formatTimestampToDate } from '@/utils/time';
 
 interface TableProps {
   productsData: ProductResData[];
@@ -44,17 +46,13 @@ export const ProductTable = ({ productsData }: TableProps) => {
                 {String(item.stock)}
               </td>
               <td className="border border-gray-300 px-4 py-2">
-                {item.created_at}
+                {formatTimestampToDate(item.created_at)}
               </td>
               <td className="border border-gray-300 px-4 py-2">
-                {item.updated_at}
+                {formatTimestampToDate(item.updated_at)}
               </td>
               <td>
-                <div>
-                  <AppButton variant="destructive">
-                    <Trash2 />
-                  </AppButton>
-                </div>
+                <DeleteDialogButton id={item.id} />
               </td>
             </tr>
           );
