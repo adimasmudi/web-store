@@ -4,31 +4,31 @@ import { GetProductsResData, ProductResData } from './dto';
 import { config } from '../config';
 import { DEFAULT_LIMIT } from '@/types/constants';
 
-export const getProducts = async (
-  search?: string,
-  category?: string,
-  limit?: number,
-  page?: number
-) => {
+export const getProducts = async (params: {
+  search?: string;
+  category?: string;
+  limit?: number;
+  page?: number;
+}) => {
   try {
     let url = `${config.API_BASE_URL}/products?`;
     let currentLimit = DEFAULT_LIMIT;
     let currentPage = 1;
 
-    if (search && search !== '') {
-      url += `&search=${search}`;
+    if (params.search && params.search !== '') {
+      url += `&search=${params.search}`;
     }
 
-    if (category && category !== '') {
-      url += `&category=${category}`;
+    if (params.category && params.category !== '') {
+      url += `&category=${params.category}`;
     }
 
-    if (limit) {
-      currentLimit = limit;
+    if (params.limit) {
+      currentLimit = params.limit;
     }
 
-    if (page) {
-      currentPage = page;
+    if (params.page) {
+      currentPage = params.page;
     }
 
     url += `&limit=${currentLimit}&page=${currentPage}`;

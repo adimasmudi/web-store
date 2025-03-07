@@ -5,12 +5,18 @@ import styles from './styles.module.css';
 import { getProducts } from '@/data/product/api';
 import { ProductResData } from '@/data/product/dto';
 import { AppButton } from '@/components/button/Button';
-import { Trash2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Trash2 } from 'lucide-react';
 import { Spinner } from '@/components/spinner/Spinner';
+import { useState } from 'react';
 
 export const Table = () => {
+  const [category, setCategory] = useState<string>('');
+  const [search, setSearch] = useState<string>('');
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
   const { data, isLoading, error } = useFetch({
-    fn: getProducts
+    fn: getProducts,
+    params: { search: search, category: category, page: currentPage }
   });
 
   return (
@@ -79,6 +85,43 @@ export const Table = () => {
                 })}
             </tbody>
           </table>
+          <div className="flex flex-row justify-between">
+            <div>
+              <span>
+                Displaying Page {currentPage} of {data?.data.numberOfPage} Pages
+              </span>
+            </div>
+            <div>
+              <AppButton
+                variant="outline"
+                state={currentPage === 1 ? 'Disabled' : 'Active'}
+                onClick={() => {
+                  if (currentPage === 1) {
+                    return;
+                  }
+                  setCurrentPage((prevState) => prevState - 1);
+                }}
+              >
+                <ArrowLeft />
+              </AppButton>
+              <AppButton
+                variant="outline"
+                state={
+                  currentPage === data?.data.numberOfPage
+                    ? 'Disabled'
+                    : 'Active'
+                }
+                onClick={() => {
+                  if (currentPage === data?.data.numberOfPage) {
+                    return;
+                  }
+                  setCurrentPage((prevState) => prevState + 1);
+                }}
+              >
+                <ArrowRight />
+              </AppButton>
+            </div>
+          </div>
         </>
       )}
     </div>
