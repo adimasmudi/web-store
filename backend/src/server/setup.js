@@ -20,9 +20,9 @@ async function serverSetup(fastify, config) {
   });
 
   fastify.register(cors, {
-    origin: '*', // Allow all origins
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
   });
 
   const productRepository = new ProductRepository(fastify);
