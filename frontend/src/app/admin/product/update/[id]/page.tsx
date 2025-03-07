@@ -1,5 +1,7 @@
+import { UpdateProductPage } from '@/features/admin/product/update/Update';
+
 const UpdateProduct = async () => {
-  return <h1>Update Product</h1>;
+  return <UpdateProductPage />;
 };
 
 export default UpdateProduct;

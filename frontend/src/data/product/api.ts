@@ -46,6 +46,23 @@ export const getProducts = async (params: {
   }
 };
 
+export const getProductBYId = async (params: { id: string }) => {
+  try {
+    let url = `${config.API_BASE_URL}/products/${params.id}`;
+
+    const response = await axios.get<
+      SuccessResponse<ProductResData> | ErrorResponse
+    >(url);
+
+    return response.data;
+  } catch (err) {
+    if (axios.isAxiosError(err)) {
+      throw err.response?.data;
+    }
+    throw new Error('unable to get product');
+  }
+};
+
 export const addProduct = async (
   reqBody: ProductReqBody
 ): Promise<SuccessResponse<ProductResData> | ErrorResponse> => {
@@ -60,6 +77,24 @@ export const addProduct = async (
       throw err.response?.data;
     }
     throw new Error('unable to add product');
+  }
+};
+
+export const updateProduct = async (params: {
+  id: string;
+  reqBody: ProductReqBody;
+}): Promise<SuccessResponse<ProductResData> | ErrorResponse> => {
+  try {
+    const response = await axios.put<
+      SuccessResponse<ProductResData> | ErrorResponse
+    >(`${config.API_BASE_URL}/products/${params.id}`, params.reqBody);
+
+    return response.data;
+  } catch (err) {
+    if (axios.isAxiosError(err)) {
+      throw err.response?.data;
+    }
+    throw new Error('unable to update product');
   }
 };
 

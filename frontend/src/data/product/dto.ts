@@ -2,9 +2,9 @@ export type ProductReqBody = {
   title: string;
   price: number;
   category: string;
-  stock: number;
+  stock?: number;
   image_path: string;
-  description: string;
+  description?: string;
 };
 
 export type ProductResData = {
