@@ -33,6 +33,8 @@ export const getProducts = async (params: {
       url += `&category=${params.category}`;
     }
 
+    console.log('url', url);
+
     const response = await axios.get<
       SuccessResponse<GetProductsResData> | ErrorResponse
     >(url);

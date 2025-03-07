@@ -9,6 +9,16 @@ import { ArrowLeft, ArrowRight, Trash2 } from 'lucide-react';
 import { Spinner } from '@/components/spinner/Spinner';
 import { useState } from 'react';
 import { Input } from '@/shadcn/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue
+} from '@/shadcn/components/ui/select';
+import { PRODUCT_CATEGORIES } from '@/types/constants';
 
 export const Table = () => {
   const [category, setCategory] = useState<string>('');
@@ -25,14 +35,45 @@ export const Table = () => {
     <div className="mt-96 w-11/12">
       {isLoading ? (
         <Spinner />
+      ) : error ? (
+        <p>There is error when trying to display product data</p>
       ) : (
         <>
           <h2>Products Table</h2>
           <div className="flex flex-row justify-between">
-            <div>Filter</div>
+            <div>
+              <Select
+                onValueChange={(val) => {
+                  if (val === 'select_all') {
+                    setCategory('');
+                    return;
+                  }
+                  setCategory(val);
+                }}
+                defaultValue={category}
+              >
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Select Category" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Category</SelectLabel>
+                    <SelectItem value="select_all">Display All</SelectItem>
+                    {PRODUCT_CATEGORIES.map((pc, idx) => {
+                      return (
+                        <SelectItem key={idx} value={pc}>
+                          {pc}
+                        </SelectItem>
+                      );
+                    })}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
             <div className="flex flex-row gap-4">
               <Input
                 placeholder="Enter a search keyword"
+                defaultValue={searchTemp}
                 onChange={(e) => setSearchTemp(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
