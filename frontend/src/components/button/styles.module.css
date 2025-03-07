@@ -6,3 +6,7 @@
   background-color: var(--color-navy);
   cursor: pointer;
 }
+
+button:hover {
+  cursor: pointer;
+}
