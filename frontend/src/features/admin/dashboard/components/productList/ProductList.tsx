@@ -20,8 +20,10 @@ import {
 } from '@/shadcn/components/ui/select';
 import { PRODUCT_CATEGORIES } from '@/types/constants';
 import { ProductTable } from '../table/Table';
+import { useRouter } from 'next/navigation';
 
 export const ProductList = () => {
+  const router = useRouter();
   const [category, setCategory] = useState<string>('');
   const [search, setSearch] = useState<string>('');
   const [searchTemp, setSearchTemp] = useState<string>('');
@@ -40,7 +42,15 @@ export const ProductList = () => {
         <p>There is error when trying to display product data</p>
       ) : (
         <>
-          <h2>Products Table</h2>
+          <div className="flex flex-row justify-between">
+            <h2>Products Table</h2>
+            <AppButton
+              variant="primary"
+              onClick={() => router.push('/admin/product/create')}
+            >
+              Create Product
+            </AppButton>
+          </div>
           <div className="flex flex-row justify-between">
             <div>
               <Select

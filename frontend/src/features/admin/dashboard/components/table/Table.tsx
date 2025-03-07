@@ -2,14 +2,16 @@
 
 import { ProductResData } from '@/data/product/dto';
 import { AppButton } from '@/components/button/Button';
-import { Trash2 } from 'lucide-react';
+import { PenIcon } from 'lucide-react';
 import { DeleteDialogButton } from '../deleteDialog/DeleteDialog';
 import { formatTimestampToDate } from '@/utils/time';
+import { useRouter } from 'next/navigation';
 
 interface TableProps {
   productsData: ProductResData[];
 }
 export const ProductTable = ({ productsData }: TableProps) => {
+  const router = useRouter();
   return (
     <table className="w-full border-collapse border border-gray-300">
       <thead>
@@ -52,7 +54,17 @@ export const ProductTable = ({ productsData }: TableProps) => {
                 {formatTimestampToDate(item.updated_at)}
               </td>
               <td>
-                <DeleteDialogButton id={item.id} />
+                <div>
+                  <AppButton
+                    variant="secondary"
+                    onClick={() =>
+                      router.push(`/admin/product/update/${item.id}`)
+                    }
+                  >
+                    <PenIcon />
+                  </AppButton>
+                  <DeleteDialogButton id={item.id} />
+                </div>
               </td>
             </tr>
           );

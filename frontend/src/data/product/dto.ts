@@ -1,3 +1,12 @@
+export type ProductReqBody = {
+  title: string;
+  price: number;
+  category: string;
+  stock: number;
+  image_path: string;
+  description: string;
+};
+
 export type ProductResData = {
   id: string;
   title: string;

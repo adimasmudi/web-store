@@ -1,6 +1,6 @@
 import { ErrorResponse, SuccessResponse } from '@/types/response';
 import axios from 'axios';
-import { GetProductsResData, ProductResData } from './dto';
+import { GetProductsResData, ProductReqBody, ProductResData } from './dto';
 import { config } from '../config';
 import { DEFAULT_LIMIT } from '@/types/constants';
 
@@ -43,6 +43,23 @@ export const getProducts = async (params: {
       throw err.response?.data;
     }
     throw new Error('unable to get products');
+  }
+};
+
+export const addProduct = async (
+  reqBody: ProductReqBody
+): Promise<SuccessResponse<ProductResData> | ErrorResponse> => {
+  try {
+    const response = await axios.post<
+      SuccessResponse<ProductResData> | ErrorResponse
+    >(`${config.API_BASE_URL}/products`, reqBody);
+
+    return response.data;
+  } catch (err) {
+    if (axios.isAxiosError(err)) {
+      throw err.response?.data;
+    }
+    throw new Error('unable to add product');
   }
 };
 
