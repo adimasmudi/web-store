@@ -1,6 +1,11 @@
 import { ErrorResponse, SuccessResponse } from '@/types/response';
 import axios from 'axios';
-import { GetProductsResData, ProductReqBody, ProductResData } from './dto';
+import {
+  GetProductsResData,
+  ProductReqBody,
+  ProductResData,
+  UpdateProductStockReqBody
+} from './dto';
 import { config } from '../config';
 import { DEFAULT_LIMIT } from '@/types/constants';
 
@@ -95,6 +100,24 @@ export const updateProduct = async (params: {
       throw err.response?.data;
     }
     throw new Error('unable to update product');
+  }
+};
+
+export const updateProductStock = async (params: {
+  id: string;
+  reqBody: UpdateProductStockReqBody;
+}): Promise<SuccessResponse<ProductResData> | ErrorResponse> => {
+  try {
+    const response = await axios.patch<
+      SuccessResponse<ProductResData> | ErrorResponse
+    >(`${config.API_BASE_URL}/products/${params.id}/stock`, params.reqBody);
+
+    return response.data;
+  } catch (err) {
+    if (axios.isAxiosError(err)) {
+      throw err.response?.data;
+    }
+    throw new Error('unable to update product stock');
   }
 };
 

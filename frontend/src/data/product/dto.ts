@@ -7,6 +7,10 @@ export type ProductReqBody = {
   description?: string;
 };
 
+export type UpdateProductStockReqBody = {
+  delta_stock: number;
+};
+
 export type ProductResData = {
   id: string;
   title: string;

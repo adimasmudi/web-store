@@ -2,10 +2,11 @@
 
 import { ProductResData } from '@/data/product/dto';
 import { AppButton } from '@/components/button/Button';
-import { PenIcon } from 'lucide-react';
+import { Box, PenIcon } from 'lucide-react';
 import { DeleteDialogButton } from '../deleteDialog/DeleteDialog';
 import { formatTimestampToDate } from '@/utils/time';
 import { useRouter } from 'next/navigation';
+import { UpdateStockDialogButton } from '../deleteDialog/UpdateStockDialog';
 
 interface TableProps {
   productsData: ProductResData[];
@@ -56,13 +57,14 @@ export const ProductTable = ({ productsData }: TableProps) => {
               <td>
                 <div>
                   <AppButton
-                    variant="secondary"
+                    variant="default"
                     onClick={() =>
                       router.push(`/admin/product/update/${item.id}`)
                     }
                   >
                     <PenIcon />
                   </AppButton>
+                  <UpdateStockDialogButton id={item.id} stock={item.stock} />
                   <DeleteDialogButton id={item.id} />
                 </div>
               </td>
