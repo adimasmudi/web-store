@@ -7,11 +7,16 @@ import { DeleteDialogButton } from '../deleteDialog/DeleteDialog';
 import { formatTimestampToDate } from '@/utils/time';
 import { useRouter } from 'next/navigation';
 import { UpdateStockDialogButton } from '../deleteDialog/UpdateStockDialog';
+import { Dispatch, SetStateAction } from 'react';
 
 interface TableProps {
   productsData: ProductResData[];
+  setToggleRefetch: Dispatch<SetStateAction<boolean>>;
 }
-export const ProductTable = ({ productsData }: TableProps) => {
+export const ProductTable = ({
+  productsData,
+  setToggleRefetch
+}: TableProps) => {
   const router = useRouter();
   return (
     <table className="w-full border-collapse border border-gray-300">
@@ -64,8 +69,15 @@ export const ProductTable = ({ productsData }: TableProps) => {
                   >
                     <PenIcon />
                   </AppButton>
-                  <UpdateStockDialogButton id={item.id} stock={item.stock} />
-                  <DeleteDialogButton id={item.id} />
+                  <UpdateStockDialogButton
+                    id={item.id}
+                    stock={item.stock}
+                    setToggleRefetch={setToggleRefetch}
+                  />
+                  <DeleteDialogButton
+                    id={item.id}
+                    setToggleRefetch={setToggleRefetch}
+                  />
                 </div>
               </td>
             </tr>

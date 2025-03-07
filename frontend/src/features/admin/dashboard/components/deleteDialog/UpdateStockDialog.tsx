@@ -16,15 +16,17 @@ import {
 import { Input } from '@/shadcn/components/ui/input';
 import { Box, Trash2 } from 'lucide-react';
 
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 interface DeleteDialogButtonProps {
   id: string;
   stock: Number;
+  setToggleRefetch: Dispatch<SetStateAction<boolean>>;
 }
 export const UpdateStockDialogButton = ({
   id,
-  stock
+  stock,
+  setToggleRefetch
 }: DeleteDialogButtonProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [stockDeltaValue, setStockDeltaValue] = useState<number>(0);
@@ -39,7 +41,7 @@ export const UpdateStockDialogButton = ({
       { id: id, reqBody: { delta_stock: stockDeltaValue } },
       {
         onSuccess: (data) => {
-          location.reload();
+          setToggleRefetch((prevState) => !prevState);
         },
         onError: (err) => {
           alert(

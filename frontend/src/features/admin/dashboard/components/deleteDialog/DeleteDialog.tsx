@@ -15,12 +15,16 @@ import {
 } from '@/shadcn/components/ui/dialog';
 import { Trash2 } from 'lucide-react';
 
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 interface DeleteDialogButtonProps {
   id: string;
+  setToggleRefetch: Dispatch<SetStateAction<boolean>>;
 }
-export const DeleteDialogButton = ({ id }: DeleteDialogButtonProps) => {
+export const DeleteDialogButton = ({
+  id,
+  setToggleRefetch
+}: DeleteDialogButtonProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const { mutate, isLoading, error } = useMutation({
@@ -33,7 +37,7 @@ export const DeleteDialogButton = ({ id }: DeleteDialogButtonProps) => {
       { id: Number(id) },
       {
         onSuccess: (data) => {
-          location.reload();
+          setToggleRefetch((prevState) => !prevState);
         },
         onError: (err) => {
           alert(`Failed to delete: ${err?.message || 'Unknown error'}`);

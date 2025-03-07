@@ -28,10 +28,12 @@ export const ProductList = () => {
   const [search, setSearch] = useState<string>('');
   const [searchTemp, setSearchTemp] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [toggleRefetch, setToggleRefetch] = useState<boolean>(false);
 
   const { data, isLoading, error } = useFetch({
     fn: getProducts,
-    params: { search: search, category: category, page: currentPage }
+    params: { search: search, category: category, page: currentPage },
+    refetch: toggleRefetch
   });
 
   return (
@@ -107,7 +109,12 @@ export const ProductList = () => {
           </div>
           {data?.data.items.length > 0 ? (
             <>
-              {data && <ProductTable productsData={data?.data.items} />}
+              {data && (
+                <ProductTable
+                  productsData={data?.data.items}
+                  setToggleRefetch={setToggleRefetch}
+                />
+              )}
 
               <div className="flex flex-row justify-between">
                 <div>

@@ -3,9 +3,14 @@ import { useEffect, useState } from 'react';
 interface UseFetchProps<T, P> {
   fn: (params: P) => Promise<T>;
   params: P;
+  refetch?: boolean;
 }
 
-export const useFetch = <T, P>({ fn, params }: UseFetchProps<T, P>) => {
+export const useFetch = <T, P>({
+  fn,
+  params,
+  refetch
+}: UseFetchProps<T, P>) => {
   const [data, setData] = useState<T | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -24,7 +29,7 @@ export const useFetch = <T, P>({ fn, params }: UseFetchProps<T, P>) => {
     };
 
     fetchData();
-  }, [fn, JSON.stringify(params)]);
+  }, [fn, JSON.stringify(params), refetch]);
 
   return { data, isLoading, error };
 };
