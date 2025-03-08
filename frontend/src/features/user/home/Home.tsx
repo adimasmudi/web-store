@@ -7,7 +7,9 @@ export const HomePage = () => {
   return (
     <div>
       <Navbar type="user" />
-      <ProductList />
+      <div className="w-full flex flex-row justify-center items-center">
+        <ProductList />
+      </div>
     </div>
   );
 };

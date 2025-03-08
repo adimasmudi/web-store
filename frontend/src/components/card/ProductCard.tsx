@@ -2,9 +2,10 @@
 
 import { Card } from '@/shadcn/components/ui/card';
 import { AppButton } from '../button/Button';
-import { CartProvider, useCart } from '@/context/cart';
+import { useCart } from '@/context/cart';
 import { ProductResData } from '@/data/product/dto';
 import { toast } from 'sonner';
+import styles from './styles.module.css';
 
 interface ProductCardProps {
   data: ProductResData;
@@ -26,13 +27,15 @@ export const ProductCard = ({ data }: ProductCardProps) => {
             className="h-full w-full object-cover rounded-md"
           />
         </div>
-        <div className="px-4 flex flex-col gap-2">
+        <div className={`flex flex-col gap-2 ${styles['padding-1']}`}>
           <p className="text-slate-800 text-xl font-semibold line-clamp-2 min-h-14">
             {data.title}
           </p>
           <p className="text-primary text-xl font-semibold">{data.price}</p>
           <div className="flex flex-wrap justify-between">
-            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+            <span
+              className={`inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 ${styles['padding-1']}`}
+            >
               <p className="line-clamp-1">{data.category}</p>
             </span>
             <p className="text-slate-600 font-semibold">
@@ -40,12 +43,12 @@ export const ProductCard = ({ data }: ProductCardProps) => {
             </p>
           </div>
         </div>
-        <div className="px-4 pt-4 h-14">
+        <div className={`h-14 ${styles['padding-1']}`}>
           <p className="text-slate-600 leading-normal font-light line-clamp-2">
             {data.description}
           </p>
         </div>
-        <div className="p-4">
+        <div className={styles['padding-1']}>
           <AppButton
             variant="primary"
             state={Number(data.stock) > 1 ? 'Active' : 'Disabled'}

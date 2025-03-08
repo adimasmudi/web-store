@@ -79,7 +79,7 @@ export const AppButton = ({
         className={style + ' relative'}
         disabled
       >
-        <Spinner />
+        <Spinner variant="small" />
         {loadingText !== undefined ? loadingText : 'Loading'}
       </Button>
     );

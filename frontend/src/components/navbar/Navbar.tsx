@@ -21,14 +21,14 @@ export const Navbar = ({ type }: NavbarProps) => {
         <div>
           <h2>Web Store</h2>
         </div>
-        <div className="flex flex-row justify-end gap-2">
+        <div className="flex flex-row justify-end gap-5">
           {type === 'admin' ? (
             <div className="flex flex-row items-center gap-2">
               <Link href="/admin">Products</Link>
               <Link href="/admin/product/log">Logs</Link>
             </div>
           ) : (
-            <div className="flex flex-col justify-end">
+            <div className="flex flex-col justify-center">
               <div className="flex items-center justify-center relative">
                 <Link href="/cart">
                   <ShoppingCart className="cursor-pointer" />

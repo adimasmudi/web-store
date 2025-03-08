@@ -18,6 +18,7 @@ import {
 } from '@/shadcn/components/ui/select';
 import { PRODUCT_CATEGORIES } from '@/types/constants';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import styles from './styles.module.css';
 
 export const ProductList = () => {
   const [products, setProducts] = useState<ProductResData[]>([]);
@@ -70,7 +71,7 @@ export const ProductList = () => {
   }, [search, category]);
 
   return (
-    <div className="mt-96 w-11/12">
+    <div className={`w-[96%]`}>
       <h2>List of Products</h2>
       <div className="flex flex-row justify-between">
         <div>
@@ -118,7 +119,9 @@ export const ProductList = () => {
           </AppButton>
         </div>
       </div>
-      <div className="grid mx-5 xl:mx-0 grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      <div
+        className={`grid mx-5 xl:mx-0 grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 ${styles['product-list-container']}`}
+      >
         {products.map((product: ProductResData, idx: number) => (
           <div
             key={product.id}
@@ -127,7 +130,7 @@ export const ProductList = () => {
             <ProductCard data={product} />
           </div>
         ))}
-        {isLoading && <Spinner />}
+        {isLoading && <Spinner variant="large" />}
         {error && <p className="text-red-500">Error loading products.</p>}
       </div>
     </div>
