@@ -5,6 +5,7 @@ import {
   createContext,
   PropsWithChildren,
   useContext,
+  useEffect,
   useMemo,
   useState
 } from 'react';
@@ -15,6 +16,7 @@ interface ICartContext {
   addToCart: (data: ProductResData) => void;
   removeFromCart: (id: string) => void;
   checkoutCart: () => void;
+  reset: () => void;
 }
 
 const CartContext = createContext<ICartContext>({
@@ -22,7 +24,8 @@ const CartContext = createContext<ICartContext>({
   checkoutData: [],
   addToCart: () => {},
   removeFromCart: () => {},
-  checkoutCart: () => {}
+  checkoutCart: () => {},
+  reset: () => {}
 });
 
 export const CartProvider = ({ children }: PropsWithChildren) => {
@@ -46,6 +49,33 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
     setCheckoutData(cartData);
     setCartData([]);
   };
+
+  const reset = () => {
+    setCheckoutData([]);
+    setCartData([]);
+  };
+
+  useEffect(() => {
+    const storedCart = localStorage.getItem('cartData');
+    const storedCheckout = localStorage.getItem('checkoutData');
+
+    if (storedCart) {
+      setCartData(JSON.parse(storedCart));
+    }
+
+    if (storedCheckout) {
+      setCheckoutData(JSON.parse(storedCheckout));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('cartData', JSON.stringify(cartData));
+  }, [cartData]);
+
+  useEffect(() => {
+    localStorage.setItem('checkoutData', JSON.stringify(checkoutData));
+  }, [checkoutData]);
+
   return (
     <CartContext.Provider
       value={useMemo(
@@ -54,7 +84,8 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
           checkoutData,
           addToCart,
           removeFromCart,
-          checkoutCart
+          checkoutCart,
+          reset
         }),
         [cartData, checkoutData]
       )}

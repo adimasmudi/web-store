@@ -10,11 +10,9 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ data }: ProductCardProps) => {
-  const { cartData, addToCart } = useCart();
+  const { addToCart } = useCart();
   const handleAddToCart = () => {
-    console.log('here', cartData);
     addToCart(data);
-    console.log('here', cartData);
   };
   return (
     <Card className="cursor-pointer">
