@@ -17,7 +17,7 @@ export const Navbar = ({ type }: NavbarProps) => {
 
   return (
     <nav className={`bg-white shadow p-10 w-full ${styles['navbar']}`}>
-      <div className=" flex items-center justify-between p-48">
+      <div className="flex items-center justify-between p-48">
         <div>
           <h2>Web Store</h2>
         </div>

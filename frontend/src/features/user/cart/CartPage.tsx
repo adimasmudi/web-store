@@ -6,6 +6,7 @@ import { Navbar } from '@/components/navbar/Navbar';
 import { useCart } from '@/context/cart';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import styles from './styles.module.css';
 
 export const CartPage = () => {
   const router = useRouter();
@@ -19,13 +20,15 @@ export const CartPage = () => {
   return (
     <div>
       <Navbar type="user" />
-      <div className="flex flex-col gap-10">
+      <div className="flex flex-col items-center gap-10">
         {cartData.map((data, idx) => {
           return <CartCard key={idx} data={data} />;
         })}
       </div>
       {cartData.length > 0 && (
-        <div className="flex flex-row justify-end">
+        <div
+          className={`flex flex-row justify-end sticky bottom-8 ${styles['checkout-item-btn-wrapper']}`}
+        >
           <AppButton variant="primary" onClick={handleCheckout}>
             Checkout
           </AppButton>
