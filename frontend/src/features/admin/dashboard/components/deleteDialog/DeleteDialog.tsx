@@ -16,6 +16,7 @@ import {
 import { Trash2 } from 'lucide-react';
 
 import { Dispatch, SetStateAction, useState } from 'react';
+import { toast } from 'sonner';
 
 interface DeleteDialogButtonProps {
   id: string;
@@ -37,10 +38,11 @@ export const DeleteDialogButton = ({
       { id: Number(id) },
       {
         onSuccess: (data) => {
+          toast.success('Item deleted successfully');
           setToggleRefetch((prevState) => !prevState);
         },
         onError: (err) => {
-          alert(`Failed to delete: ${err?.message || 'Unknown error'}`);
+          toast.error(`Failed to delete: ${err?.message || 'Unknown error'}`);
         }
       }
     );

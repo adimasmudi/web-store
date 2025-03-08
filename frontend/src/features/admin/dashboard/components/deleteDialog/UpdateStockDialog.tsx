@@ -17,6 +17,7 @@ import { Input } from '@/shadcn/components/ui/input';
 import { Box, Trash2 } from 'lucide-react';
 
 import { Dispatch, SetStateAction, useState } from 'react';
+import { toast } from 'sonner';
 
 interface DeleteDialogButtonProps {
   id: string;
@@ -41,10 +42,11 @@ export const UpdateStockDialogButton = ({
       { id: id, reqBody: { delta_stock: stockDeltaValue } },
       {
         onSuccess: (data) => {
+          toast.success('Item updated successfully');
           setToggleRefetch((prevState) => !prevState);
         },
         onError: (err) => {
-          alert(
+          toast.error(
             `Failed to update product stock: ${err?.message || 'Unknown error'}`
           );
         }

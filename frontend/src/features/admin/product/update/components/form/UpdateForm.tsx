@@ -14,11 +14,12 @@ import {
   SelectValue
 } from '@/shadcn/components/ui/select';
 import { PRODUCT_CATEGORIES } from '@/types/constants';
-import { addProduct, getProductBYId, updateProduct } from '@/data/product/api';
+import { getProductBYId, updateProduct } from '@/data/product/api';
 import { useMutation } from '@/hooks/useMutation';
 import { useParams, useRouter } from 'next/navigation';
 import { Label } from '@/shadcn/components/ui/label';
 import { useFetch } from '@/hooks/useFetch';
+import { toast } from 'sonner';
 
 export const UpdateForm = () => {
   const router = useRouter();
@@ -73,11 +74,11 @@ export const UpdateForm = () => {
       },
       {
         onSuccess: (data) => {
-          alert('Product updated successfully!');
+          toast.success('Product updated successfully!');
           router.push('/admin');
         },
         onError: (err) => {
-          alert(`Failed to update: ${err?.message || 'Unknown error'}`);
+          toast.error(`Failed to update: ${err?.message || 'Unknown error'}`);
         }
       }
     );

@@ -5,6 +5,7 @@ import { CartCard } from '@/components/card/CartCard';
 import { Navbar } from '@/components/navbar/Navbar';
 import { useCart } from '@/context/cart';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 export const CartPage = () => {
   const router = useRouter();
@@ -12,6 +13,7 @@ export const CartPage = () => {
 
   const handleCheckout = () => {
     checkoutCart();
+    toast.success('Chekcout item success');
     router.push('/checkout');
   };
   return (

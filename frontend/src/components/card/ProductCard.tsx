@@ -4,6 +4,7 @@ import { Card } from '@/shadcn/components/ui/card';
 import { AppButton } from '../button/Button';
 import { CartProvider, useCart } from '@/context/cart';
 import { ProductResData } from '@/data/product/dto';
+import { toast } from 'sonner';
 
 interface ProductCardProps {
   data: ProductResData;
@@ -12,6 +13,7 @@ interface ProductCardProps {
 export const ProductCard = ({ data }: ProductCardProps) => {
   const { addToCart } = useCart();
   const handleAddToCart = () => {
+    toast.success('Item added to cart successfully');
     addToCart(data);
   };
   return (

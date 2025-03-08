@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './main.css';
 import { CartProvider } from '@/context/cart';
+import { Toaster } from '@/shadcn/components/ui/sonner';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -29,6 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <CartProvider>{children}</CartProvider>
+        <Toaster richColors />
       </body>
     </html>
   );

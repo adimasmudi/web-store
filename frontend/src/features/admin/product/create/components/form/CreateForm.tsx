@@ -18,6 +18,7 @@ import { addProduct } from '@/data/product/api';
 import { useMutation } from '@/hooks/useMutation';
 import { useRouter } from 'next/navigation';
 import { Label } from '@/shadcn/components/ui/label';
+import { toast } from 'sonner';
 
 export const CreateForm = () => {
   const router = useRouter();
@@ -48,11 +49,11 @@ export const CreateForm = () => {
 
     mutate(formData, {
       onSuccess: (data) => {
-        alert('Product created successfully!');
+        toast.success('Product created successfully!');
         router.push('/admin');
       },
       onError: (err) => {
-        alert(`Failed to add: ${err?.message || 'Unknown error'}`);
+        toast.error(`Failed to add: ${err?.message || 'Unknown error'}`);
       }
     });
   };

@@ -1,14 +1,12 @@
 'use client';
 
 import { formatTimestampToDate } from '@/utils/time';
-import { useRouter } from 'next/navigation';
 import { LogResData } from '@/data/log/dto';
 
 interface LogTableProps {
   logsData: LogResData[];
 }
 export const LogTable = ({ logsData }: LogTableProps) => {
-  const router = useRouter();
   return (
     <table className="w-full border-collapse border border-gray-300">
       <thead>

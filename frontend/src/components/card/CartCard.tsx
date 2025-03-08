@@ -2,6 +2,7 @@ import { ProductResData } from '@/data/product/dto';
 import { AppButton } from '../button/Button';
 import { Trash2 } from 'lucide-react';
 import { useCart } from '@/context/cart';
+import { toast } from 'sonner';
 
 interface CartCardProps {
   data: ProductResData;
@@ -10,6 +11,7 @@ interface CartCardProps {
 export const CartCard = ({ data }: CartCardProps) => {
   const { removeFromCart } = useCart();
   const handleRemoveItem = () => {
+    toast.success('Item removed successfully');
     removeFromCart(data.id);
   };
   return (
