@@ -124,15 +124,7 @@ export const ProductList = () => {
             key={product.id}
             ref={idx === products.length - 1 ? lastProductRef : null}
           >
-            <ProductCard
-              id={Number(product.id)}
-              title={product.title}
-              price={Number(product.price)}
-              description={product.description}
-              category={product.category}
-              image_path={product.image_path}
-              stock={Number(product.stock)}
-            />
+            <ProductCard data={product} />
           </div>
         ))}
         {isLoading && <Spinner />}

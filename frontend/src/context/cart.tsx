@@ -1,10 +1,16 @@
 import { ProductResData } from '@/data/product/dto';
-import { createContext, PropsWithChildren, useMemo, useState } from 'react';
+import {
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useMemo,
+  useState
+} from 'react';
 
 interface ICartContext {
   cartData: ProductResData[];
   checkoutData: ProductResData[];
-  addToChart: (data: ProductResData) => void;
+  addToCart: (data: ProductResData) => void;
   removeFromCart: (id: string) => void;
   checkoutCart: () => void;
 }
@@ -12,7 +18,7 @@ interface ICartContext {
 const CartContext = createContext<ICartContext>({
   cartData: [],
   checkoutData: [],
-  addToChart: () => {},
+  addToCart: () => {},
   removeFromCart: () => {},
   checkoutCart: () => {}
 });
@@ -20,8 +26,14 @@ const CartContext = createContext<ICartContext>({
 export const CartProvider = ({ children }: PropsWithChildren) => {
   const [cartData, setCartData] = useState<ProductResData[]>([]);
   const [checkoutData, setCheckoutData] = useState<ProductResData[]>([]);
-  const addToChart = (data: ProductResData) => {
-    setCartData((prevState) => [...prevState, data]);
+  const addToCart = (data: ProductResData) => {
+    setCartData((prevState) => {
+      const findIdx = prevState.findIndex((item) => item.id === data.id);
+      if (findIdx !== -1) {
+        return [...prevState];
+      }
+      return [...prevState, data];
+    });
   };
   const removeFromCart = (id: string) => {
     setCartData((prevState) => {
@@ -38,7 +50,7 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
         () => ({
           cartData,
           checkoutData,
-          addToChart,
+          addToCart,
           removeFromCart,
           checkoutCart
         }),
@@ -48,4 +60,8 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
       {children}
     </CartContext.Provider>
   );
+};
+
+export const useCart = () => {
+  return useContext(CartContext);
 };
