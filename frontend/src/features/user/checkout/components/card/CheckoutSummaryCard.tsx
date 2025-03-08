@@ -4,6 +4,7 @@ import { ProductResData } from '@/data/product/dto';
 import { Card } from '@/shadcn/components/ui/card';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import styles from './styles.module.css';
 
 interface CheckoutSummaryCardProps {
   products: ProductResData[];
@@ -19,7 +20,7 @@ export const CheckoutSummaryCard = ({ products }: CheckoutSummaryCardProps) => {
   };
 
   return (
-    <Card className="p-5 sticky top-5">
+    <Card className={`w-100 sticky top-5 ${styles['padding-1']}`}>
       <p className="font-bold mb-4">Order Summary</p>
       <div className="flex flex-col gap-1">
         <div className="flex justify-between">

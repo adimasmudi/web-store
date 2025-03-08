@@ -4,6 +4,7 @@ import { useCart } from '@/context/cart';
 import { CheckoutProductCard } from './components/card/CheckoutProductCard';
 import { Navbar } from '@/components/navbar/Navbar';
 import { CheckoutSummaryCard } from './components/card/CheckoutSummaryCard';
+import styles from './styles.module.css';
 
 export const CheckoutPage = () => {
   const { checkoutData } = useCart();
@@ -11,7 +12,9 @@ export const CheckoutPage = () => {
   return (
     <div>
       <Navbar type="user" />
-      <div className="flex flex-row justify-between">
+      <div
+        className={`flex flex-row justify-between gap-5 ${styles['checkout-wrapper']}`}
+      >
         <div>
           <CheckoutProductCard products={checkoutData} />
         </div>

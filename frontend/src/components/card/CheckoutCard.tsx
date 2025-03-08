@@ -6,7 +6,7 @@ interface CheckoutCardProps {
 
 export const CheckoutCard = ({ productData }: CheckoutCardProps) => {
   return (
-    <div className="grid xl:grid-cols-12 gap-4">
+    <div className="grid xl:grid-cols-12 gap-4 shadow">
       <img
         src={productData.image_path}
         alt="product-img"
