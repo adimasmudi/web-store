@@ -3,10 +3,10 @@
 import { ProductResData } from '@/data/product/dto';
 import { AppButton } from '@/components/button/Button';
 import { PenIcon } from 'lucide-react';
-import { DeleteDialogButton } from '../deleteDialog/DeleteDialog';
+import { DeleteDialogButton } from '../dialog/DeleteDialog';
 import { formatTimestampToDate } from '@/utils/time';
 import { useRouter } from 'next/navigation';
-import { UpdateStockDialogButton } from '../deleteDialog/UpdateStockDialog';
+import { UpdateStockDialogButton } from '../dialog/UpdateStockDialog';
 import { Dispatch, SetStateAction } from 'react';
 import styles from './styles.module.css';
 

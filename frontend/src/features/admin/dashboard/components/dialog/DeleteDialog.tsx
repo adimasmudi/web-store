@@ -14,7 +14,7 @@ import {
   DialogTrigger
 } from '@/shadcn/components/ui/dialog';
 import { Trash2 } from 'lucide-react';
-
+import styles from './styles.module.css';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { toast } from 'sonner';
 
@@ -58,7 +58,10 @@ export const DeleteDialogButton = ({
           <Trash2 className="text-red-500" />
         </AppButton>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]" color="text-navy">
+      <DialogContent
+        className={`sm:max-w-[425px] ${styles['dialog-container']}`}
+        color="text-navy"
+      >
         <DialogHeader>
           <DialogTitle className="flex justify-center text-navy font-semibold pt-6">
             Delete !

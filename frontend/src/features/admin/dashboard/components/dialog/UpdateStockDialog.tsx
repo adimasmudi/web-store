@@ -1,7 +1,7 @@
 'use client';
 
 import { AppButton } from '@/components/button/Button';
-import { deleteProduct, updateProductStock } from '@/data/product/api';
+import { updateProductStock } from '@/data/product/api';
 import { useMutation } from '@/hooks/useMutation';
 import {
   Dialog,
@@ -14,8 +14,8 @@ import {
   DialogTrigger
 } from '@/shadcn/components/ui/dialog';
 import { Input } from '@/shadcn/components/ui/input';
-import { Box, Trash2 } from 'lucide-react';
-
+import { Box } from 'lucide-react';
+import styles from './styles.module.css';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { toast } from 'sonner';
 
@@ -72,7 +72,10 @@ export const UpdateStockDialogButton = ({
           <Box />
         </AppButton>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]" color="text-navy">
+      <DialogContent
+        className={`sm:max-w-[425px] ${styles['dialog-container']}`}
+        color="text-navy"
+      >
         <DialogHeader>
           <DialogTitle className="flex justify-center text-navy font-semibold pt-6">
             Update Stock Product
@@ -90,12 +93,13 @@ export const UpdateStockDialogButton = ({
           >
             -
           </AppButton>
-          <div className=" flex flex-row justify-center items-center w-44 h-10 ">
+          <div className="flex flex-row justify-center items-center w-50 h-10 ">
             <Input
               type="number"
               placeholder="Enter delta value of stock"
               value={stockDeltaValue || ''}
               onChange={(e) => setStockDeltaValue(Number(e.target.value))}
+              className="text-center"
             />
           </div>
           <AppButton
