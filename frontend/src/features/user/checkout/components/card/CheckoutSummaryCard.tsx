@@ -3,6 +3,7 @@ import { useCart } from '@/context/cart';
 import { ProductResData } from '@/data/product/dto';
 import { Card } from '@/shadcn/components/ui/card';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 interface CheckoutSummaryCardProps {
   products: ProductResData[];
@@ -12,6 +13,7 @@ export const CheckoutSummaryCard = ({ products }: CheckoutSummaryCardProps) => {
   const { reset } = useCart();
 
   const handlePayment = () => {
+    toast.success('Payment Success');
     reset();
     router.push('/');
   };
