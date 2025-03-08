@@ -5,7 +5,7 @@ export const LogPage = () => {
   return (
     <div>
       <Navbar type="admin" />
-      <div className="bg-app_broken_white h-dvh">
+      <div className="w-full flex flex-row justify-center items-center">
         <LogList />
       </div>
     </div>

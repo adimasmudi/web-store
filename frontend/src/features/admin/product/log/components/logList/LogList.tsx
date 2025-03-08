@@ -2,8 +2,6 @@
 
 import { useFetch } from '@/hooks/useFetch';
 import styles from './styles.module.css';
-import { getProducts } from '@/data/product/api';
-import { ProductResData } from '@/data/product/dto';
 import { AppButton } from '@/components/button/Button';
 import { ArrowLeft, ArrowRight, Table, Trash2 } from 'lucide-react';
 import { Spinner } from '@/components/spinner/Spinner';
@@ -21,14 +19,16 @@ export const LogList = () => {
   });
 
   return (
-    <div className="mt-96 w-11/12">
+    <div className={`w-[96%] ${styles['log-list-container']}`}>
       {isLoading ? (
-        <Spinner />
+        <Spinner variant="large" />
       ) : error ? (
-        <p>There is error when trying to display product data</p>
+        <p>There is error when trying to display logs data</p>
       ) : (
         <>
-          <div className="flex flex-row justify-between">
+          <div
+            className={`flex flex-row items-end justify-between ${styles['log-list-header']}`}
+          >
             <h2>Logs Table</h2>
           </div>
 
@@ -43,7 +43,7 @@ export const LogList = () => {
                     Pages
                   </span>
                 </div>
-                <div>
+                <div className="flex flex-row gap-2">
                   <AppButton
                     variant="outline"
                     state={currentPage === 1 ? 'Disabled' : 'Active'}

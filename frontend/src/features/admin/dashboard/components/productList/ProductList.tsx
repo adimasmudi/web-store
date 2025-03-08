@@ -37,14 +37,16 @@ export const ProductList = () => {
   });
 
   return (
-    <div className="mt-96 w-11/12">
+    <div className={`w-[96%] ${styles['product-list-container']}`}>
       {isLoading ? (
-        <Spinner />
+        <Spinner variant="large" />
       ) : error ? (
         <p>There is error when trying to display product data</p>
       ) : (
         <>
-          <div className="flex flex-row justify-between">
+          <div
+            className={`flex flex-row items-end justify-between ${styles['product-list-header']}`}
+          >
             <h2>Products Table</h2>
             <AppButton
               variant="primary"
@@ -123,7 +125,7 @@ export const ProductList = () => {
                     Pages
                   </span>
                 </div>
-                <div>
+                <div className="flex flex-row gap-2">
                   <AppButton
                     variant="outline"
                     state={currentPage === 1 ? 'Disabled' : 'Active'}

@@ -69,6 +69,8 @@ export const AppButton = ({
     style += ` ${rest.className}`;
   }
 
+  style += ` ${styles['btn-base']}`;
+
   if (state != undefined && state == 'Loading') {
     return (
       <Button

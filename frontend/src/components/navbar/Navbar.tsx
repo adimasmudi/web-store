@@ -5,6 +5,7 @@ import { AppButton } from '../button/Button';
 import Link from 'next/link';
 import { useCart } from '@/context/cart';
 import { ShoppingCart } from 'lucide-react';
+import styles from './styles.module.css';
 
 interface NavbarProps {
   type: 'user' | 'admin';
@@ -15,14 +16,14 @@ export const Navbar = ({ type }: NavbarProps) => {
   const { cartData } = useCart();
 
   return (
-    <nav className="bg-white shadow p-10 w-full">
+    <nav className={`bg-white shadow p-10 w-full ${styles['navbar']}`}>
       <div className=" flex items-center justify-between p-48">
         <div>
           <h2>Web Store</h2>
         </div>
         <div className="flex flex-row justify-end gap-2">
           {type === 'admin' ? (
-            <div>
+            <div className="flex flex-row items-center gap-2">
               <Link href="/admin">Products</Link>
               <Link href="/admin/product/log">Logs</Link>
             </div>
