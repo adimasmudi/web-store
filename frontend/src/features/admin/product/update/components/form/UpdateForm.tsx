@@ -85,12 +85,15 @@ export const UpdateForm = () => {
   };
 
   return (
-    <div className="bg-app_white h-3/5 w-3/5">
-      <form onSubmit={handleSubmit}>
-        <div className="flex flex-col gap-5">
-          <div className="flex flex-row gap-10">
-            <div>
-              <div>
+    <div className="bg-app_white h-3/5 w-3/5 rounded shadow">
+      <form
+        onSubmit={handleSubmit}
+        className=" flex flex-col justify-center h-full"
+      >
+        <div className="flex flex-col  gap-5">
+          <div className="flex flex-row justify-evenly flex-wrap gap-10">
+            <div className="h-full flex flex-col gap-3">
+              <div className="h-14 w-56">
                 <Label htmlFor="title">Title</Label>
                 <Input
                   placeholder="Enter title"
@@ -99,7 +102,7 @@ export const UpdateForm = () => {
                   onChange={handleChange}
                 />
               </div>
-              <div>
+              <div className="h-14 w-56">
                 <Label htmlFor="price">Price</Label>
                 <Input
                   placeholder="Enter price"
@@ -110,7 +113,7 @@ export const UpdateForm = () => {
                   min="0"
                 />
               </div>
-              <div>
+              <div className="h-14 w-56">
                 <Label htmlFor="category">Category</Label>
                 <Select
                   onValueChange={(value) =>
@@ -138,8 +141,8 @@ export const UpdateForm = () => {
                 </Select>
               </div>
             </div>
-            <div>
-              <div>
+            <div className="h-full flex flex-col gap-3">
+              <div className="h-14 w-56">
                 <Label htmlFor="image_path">Image Path</Label>
                 <Input
                   placeholder="image_path"
@@ -148,7 +151,7 @@ export const UpdateForm = () => {
                   onChange={handleChange}
                 />
               </div>
-              <div>
+              <div className="h-30">
                 <Label htmlFor="description">Description</Label>
                 <Textarea
                   placeholder="Enter description"
@@ -159,7 +162,7 @@ export const UpdateForm = () => {
               </div>
             </div>
           </div>
-          <div>
+          <div className="flex flex-row justify-center">
             <AppButton
               state={isLoading ? 'Loading' : 'Active'}
               variant="primary"
