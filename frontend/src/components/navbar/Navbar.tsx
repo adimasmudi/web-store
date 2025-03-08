@@ -29,12 +29,9 @@ export const Navbar = ({ type }: NavbarProps) => {
           ) : (
             <div className="flex flex-col justify-end">
               <div className="flex items-center justify-center relative">
-                <ShoppingCart
-                  className="cursor-pointer"
-                  onClick={() => {
-                    router.push('/cart');
-                  }}
-                />
+                <Link href="/cart">
+                  <ShoppingCart className="cursor-pointer" />
+                </Link>
                 {cartData.length > 0 && (
                   <div className="absolute -inset-y-3 inset-x-4 flex justify-center items-center bg-navy w-5 h-5 rounded-full text-sm">
                     <span className="text-white">{cartData.length}</span>

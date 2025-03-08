@@ -1,13 +1,12 @@
 'use client';
 
 import { Navbar } from '@/components/navbar/Navbar';
-import { ProductList } from './components/productList/ProductList';
 
-export const HomePage = () => {
+export const CartPage = () => {
   return (
     <div>
       <Navbar type="user" />
-      <ProductList />
+      <p>This is cart page</p>
     </div>
   );
 };

@@ -1,3 +1,5 @@
+'use client';
+
 import { ProductResData } from '@/data/product/dto';
 import {
   createContext,
