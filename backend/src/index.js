@@ -10,7 +10,7 @@ async function startServer() {
   try {
     await serverSetup(fastify, config);
 
-    await fastify.listen({ port: config.port || 5000 });
+    await fastify.listen({ port: config.port || 5000, host: '0.0.0.0' });
     console.log(`Server listening at http://localhost:${config.port || 5000}`);
   } catch (err) {
     fastify.log.error(err);

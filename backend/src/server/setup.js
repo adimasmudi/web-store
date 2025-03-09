@@ -52,6 +52,8 @@ async function serverSetup(fastify, config) {
     },
     { prefix: '/logs' }
   );
+
+  fastify.get('/health', (req, res) => res.send('OK'));
 }
 
 module.exports = serverSetup;
