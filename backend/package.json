@@ -23,17 +23,14 @@
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-babel": "^3.0.0",
-    "@types/node": "^22.13.9",
     "chai": "^5.2.0",
     "chai-as-promised": "^8.0.1",
     "chai-http": "^5.1.1",
-    "fastify-tsconfig": "^3.0.0",
     "knex": "^3.1.0",
     "mocha": "^11.1.0",
     "nyc": "^17.1.0",
     "sinon": "^19.0.2",
-    "sinon-chai": "^4.0.0",
-    "ts-node": "^10.9.2"
+    "sinon-chai": "^4.0.0"
   },
   "nyc": {
     "extension": [
