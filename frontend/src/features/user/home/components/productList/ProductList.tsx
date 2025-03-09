@@ -73,7 +73,7 @@ export const ProductList = () => {
   return (
     <div className={`w-[96%]`}>
       <h2>List of Products</h2>
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-row flex-wrap justify-between gap-2">
         <div>
           <Select
             onValueChange={(val) => {
@@ -120,7 +120,7 @@ export const ProductList = () => {
         </div>
       </div>
       <div
-        className={`grid mx-5 xl:mx-0 grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 ${styles['product-list-container']}`}
+        className={`grid mx-5 xl:mx-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 ${styles['product-list-container']}`}
       >
         {products.map((product: ProductResData, idx: number) => (
           <div

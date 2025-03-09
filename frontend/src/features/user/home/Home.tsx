@@ -5,7 +5,7 @@ import { ProductList } from './components/productList/ProductList';
 
 export const HomePage = () => {
   return (
-    <div>
+    <div className="relative">
       <Navbar type="user" />
       <div className="w-full flex flex-row justify-center items-center">
         <ProductList />

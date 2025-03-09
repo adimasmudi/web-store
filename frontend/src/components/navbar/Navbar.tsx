@@ -16,7 +16,9 @@ export const Navbar = ({ type }: NavbarProps) => {
   const { cartData } = useCart();
 
   return (
-    <nav className={`bg-white shadow p-10 w-full ${styles['navbar']}`}>
+    <nav
+      className={`bg-white shadow p-10 w-full sticky top-0 z-10 ${styles['navbar']}`}
+    >
       <div className="flex items-center justify-between p-48">
         <div>
           <h2>Web Store</h2>
