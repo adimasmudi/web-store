@@ -46,8 +46,8 @@ module.exports = {
     client: 'postgresql',
     connection: config.databaseURL,
     pool: {
-      min: 2,
-      max: 10
+      min: 0,
+      max: 5
     },
     migrations: {
       tableName: 'knex_migrations',
