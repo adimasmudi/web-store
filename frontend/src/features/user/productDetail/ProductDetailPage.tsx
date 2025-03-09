@@ -32,12 +32,14 @@ const ProductDetailPage = () => {
     return <p className="text-center">Something Went Wrong</p>;
   }
 
+  sendGAEvent('event', 'user view product', { value: product?.data?.title });
+
   const handleClickAddToCart = () => {
     if (!product?.data) return;
 
     toast.success('Item added to cart successfully');
     addToCart(product?.data);
-    sendGAEvent('event', 'added to cart', { value: product.data });
+    sendGAEvent('event', 'added to cart', { value: product.data.title });
   };
   return (
     <main className="min-h-screen bg-broken-white flex flex-col">

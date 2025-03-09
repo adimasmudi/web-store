@@ -18,6 +18,7 @@ import { Box } from 'lucide-react';
 import styles from './styles.module.css';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { toast } from 'sonner';
+import { sendGAEvent } from '@next/third-parties/google';
 
 interface DeleteDialogButtonProps {
   id: string;
@@ -42,6 +43,9 @@ export const UpdateStockDialogButton = ({
       { id: id, reqBody: { delta_stock: stockDeltaValue } },
       {
         onSuccess: () => {
+          sendGAEvent('event', 'update product stock', {
+            value: `product id : ${id}`
+          });
           toast.success('Item updated successfully');
           setToggleRefetch((prevState) => !prevState);
         },

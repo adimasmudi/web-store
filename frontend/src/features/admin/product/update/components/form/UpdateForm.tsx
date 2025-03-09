@@ -20,6 +20,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { Label } from '@/shadcn/components/ui/label';
 import { useFetch } from '@/hooks/useFetch';
 import { toast } from 'sonner';
+import { sendGAEvent } from '@next/third-parties/google';
 
 export const UpdateForm = () => {
   const router = useRouter();
@@ -74,6 +75,7 @@ export const UpdateForm = () => {
       },
       {
         onSuccess: () => {
+          sendGAEvent('event', 'update a product', { value: formData.title });
           toast.success('Product updated successfully!');
           router.push('/admin');
         },

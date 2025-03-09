@@ -5,6 +5,7 @@ import { Card } from '@/shadcn/components/ui/card';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import styles from './styles.module.css';
+import { sendGAEvent } from '@next/third-parties/google';
 
 interface CheckoutSummaryCardProps {
   products: ProductResData[];
@@ -14,6 +15,9 @@ export const CheckoutSummaryCard = ({ products }: CheckoutSummaryCardProps) => {
   const { reset } = useCart();
 
   const handlePayment = () => {
+    sendGAEvent('event', 'user checkout product', {
+      value: `product ids : [${products.map((product) => product.id)}]`
+    });
     toast.success('Payment Success');
     reset();
     router.push('/');

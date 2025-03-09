@@ -17,6 +17,7 @@ import { Trash2 } from 'lucide-react';
 import styles from './styles.module.css';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { toast } from 'sonner';
+import { sendGAEvent } from '@next/third-parties/google';
 
 interface DeleteDialogButtonProps {
   id: string;
@@ -38,6 +39,9 @@ export const DeleteDialogButton = ({
       { id: Number(id) },
       {
         onSuccess: () => {
+          sendGAEvent('event', 'delete a product', {
+            value: `product id : ${id}`
+          });
           toast.success('Item deleted successfully');
           setToggleRefetch((prevState) => !prevState);
         },

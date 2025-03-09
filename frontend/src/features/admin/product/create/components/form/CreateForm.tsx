@@ -19,6 +19,7 @@ import { useMutation } from '@/hooks/useMutation';
 import { useRouter } from 'next/navigation';
 import { Label } from '@/shadcn/components/ui/label';
 import { toast } from 'sonner';
+import { sendGAEvent } from '@next/third-parties/google';
 
 export const CreateForm = () => {
   const router = useRouter();
@@ -49,6 +50,7 @@ export const CreateForm = () => {
 
     mutate(formData, {
       onSuccess: () => {
+        sendGAEvent('event', 'create a product', { value: formData.title });
         toast.success('Product created successfully!');
         router.push('/admin');
       },
