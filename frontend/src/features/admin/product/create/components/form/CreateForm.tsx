@@ -31,7 +31,7 @@ export const CreateForm = () => {
     description: ''
   });
 
-  const { mutate, isLoading, error } = useMutation({
+  const { mutate, isLoading } = useMutation({
     fn: addProduct
   });
 
@@ -48,7 +48,7 @@ export const CreateForm = () => {
     e.preventDefault();
 
     mutate(formData, {
-      onSuccess: (data) => {
+      onSuccess: () => {
         toast.success('Product created successfully!');
         router.push('/admin');
       },

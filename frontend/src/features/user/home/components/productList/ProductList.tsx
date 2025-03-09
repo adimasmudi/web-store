@@ -51,18 +51,20 @@ export const ProductList = () => {
   );
 
   useEffect(() => {
-    if (data?.data.items.length > 0) {
+    if (data?.data && data?.data?.items.length > 0) {
       setProducts((prevState) => {
-        const newItems = data?.data.items.filter(
+        const newItems = data?.data?.items.filter(
           (item: ProductResData) =>
             !prevState.some((prevItem) => prevItem.id === item.id)
         );
+
+        if (!newItems) return [...prevState];
         return [...prevState, ...newItems];
       });
     } else {
       setHasMore(false);
     }
-  }, [data?.data.items]);
+  }, [data?.data?.items]);
 
   useEffect(() => {
     setProducts([]);
@@ -135,7 +137,7 @@ export const ProductList = () => {
             <ProductCard data={product} />
           </div>
         ))}
-        {isLoading && <Spinner variant="large" />}
+        {isLoading && <Spinner />}
         {error && <p className="text-red-500">Error loading products.</p>}
       </div>
     </div>

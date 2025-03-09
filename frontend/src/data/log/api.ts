@@ -21,7 +21,7 @@ export const getLogs = async (params: { limit?: number; page?: number }) => {
     url += `?limit=${currentLimit}&page=${currentPage}`;
 
     const response = await axios.get<
-      SuccessResponse<GetLogsResData> | ErrorResponse
+      SuccessResponse<GetLogsResData> | ErrorResponse<GetLogsResData>
     >(url);
 
     return response.data;

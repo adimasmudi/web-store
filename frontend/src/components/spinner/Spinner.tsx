@@ -1,9 +1,6 @@
 'use client';
 
-interface SpinnerProps {
-  variant?: 'small' | 'large';
-}
-export const Spinner = ({ variant }: SpinnerProps) => {
+export const Spinner = () => {
   return (
     <div role="status" className="flex flex-row justify-center items-center">
       <svg

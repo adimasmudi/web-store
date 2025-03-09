@@ -21,7 +21,7 @@ import { toast } from 'sonner';
 
 interface DeleteDialogButtonProps {
   id: string;
-  stock: Number;
+  stock: number;
   setToggleRefetch: Dispatch<SetStateAction<boolean>>;
 }
 export const UpdateStockDialogButton = ({
@@ -32,7 +32,7 @@ export const UpdateStockDialogButton = ({
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [stockDeltaValue, setStockDeltaValue] = useState<number>(0);
 
-  const { mutate, isLoading, error } = useMutation({
+  const { mutate, isLoading } = useMutation({
     fn: updateProductStock
   });
   const handleUpdateStock = () => {
@@ -41,7 +41,7 @@ export const UpdateStockDialogButton = ({
     mutate(
       { id: id, reqBody: { delta_stock: stockDeltaValue } },
       {
-        onSuccess: (data) => {
+        onSuccess: () => {
           toast.success('Item updated successfully');
           setToggleRefetch((prevState) => !prevState);
         },

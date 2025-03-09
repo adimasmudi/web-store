@@ -1,5 +1,6 @@
 import { ProductResData } from '@/data/product/dto';
 import styles from './styles.module.css';
+import Image from 'next/image';
 
 interface CheckoutCardProps {
   productData: ProductResData;
@@ -8,9 +9,11 @@ interface CheckoutCardProps {
 export const CheckoutCard = ({ productData }: CheckoutCardProps) => {
   return (
     <div className={`grid xl:grid-cols-12 gap-4 shadow ${styles['padding-1']}`}>
-      <img
+      <Image
         src={productData.image_path}
         alt="product-img"
+        width={100}
+        height={100}
         className="size-[78px] rounded-md xl:col-span-2"
       />
       <div className="flex flex-col gap-2 xl:col-span-7">

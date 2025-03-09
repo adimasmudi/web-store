@@ -5,9 +5,9 @@ export type SuccessResponse<T> = {
   data?: T;
 };
 
-export type ErrorResponse = {
+export type ErrorResponse<T> = {
   status: string;
   statusCode: number;
   message: string;
-  data?: any;
+  data?: T;
 };

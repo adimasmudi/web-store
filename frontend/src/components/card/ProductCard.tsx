@@ -6,6 +6,7 @@ import { useCart } from '@/context/cart';
 import { ProductResData } from '@/data/product/dto';
 import { toast } from 'sonner';
 import styles from './styles.module.css';
+import Image from 'next/image';
 
 interface ProductCardProps {
   data: ProductResData;
@@ -21,9 +22,11 @@ export const ProductCard = ({ data }: ProductCardProps) => {
     <Card className="cursor-pointer">
       <div className="rounded">
         <div className="relative p-4 h-64 overflow-hidden rounded-xl bg-clip-border">
-          <img
+          <Image
             src={data.image_path}
             alt={data.title}
+            width={200}
+            height={200}
             className="h-full w-full object-cover rounded-md"
           />
         </div>

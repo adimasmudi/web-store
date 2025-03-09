@@ -3,9 +3,8 @@
 import { useFetch } from '@/hooks/useFetch';
 import styles from './styles.module.css';
 import { getProducts } from '@/data/product/api';
-import { ProductResData } from '@/data/product/dto';
 import { AppButton } from '@/components/button/Button';
-import { ArrowLeft, ArrowRight, Table, Trash2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Spinner } from '@/components/spinner/Spinner';
 import { useState } from 'react';
 import { Input } from '@/shadcn/components/ui/input';
@@ -39,7 +38,7 @@ export const ProductList = () => {
   return (
     <div className={`w-[96%] ${styles['product-list-container']}`}>
       {isLoading ? (
-        <Spinner variant="large" />
+        <Spinner />
       ) : error ? (
         <p>There is error when trying to display product data</p>
       ) : (
@@ -111,11 +110,11 @@ export const ProductList = () => {
               </AppButton>
             </div>
           </div>
-          {data?.data.items.length > 0 ? (
+          {data?.data && data.data.items?.length > 0 ? (
             <>
               {data && (
                 <ProductTable
-                  productsData={data?.data.items}
+                  productsData={data?.data?.items}
                   setToggleRefetch={setToggleRefetch}
                 />
               )}
@@ -148,7 +147,7 @@ export const ProductList = () => {
                         : 'Active'
                     }
                     onClick={() => {
-                      if (currentPage === data?.data.numberOfPage) {
+                      if (currentPage === data?.data?.numberOfPage) {
                         return;
                       }
                       setCurrentPage((prevState) => prevState + 1);

@@ -3,10 +3,9 @@
 import { useFetch } from '@/hooks/useFetch';
 import styles from './styles.module.css';
 import { AppButton } from '@/components/button/Button';
-import { ArrowLeft, ArrowRight, Table, Trash2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Spinner } from '@/components/spinner/Spinner';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { LogTable } from '../table/Table';
 import { getLogs } from '@/data/log/api';
 
@@ -21,7 +20,7 @@ export const LogList = () => {
   return (
     <div className={`w-[96%] ${styles['log-list-container']}`}>
       {isLoading ? (
-        <Spinner variant="large" />
+        <Spinner />
       ) : error ? (
         <p>There is error when trying to display logs data</p>
       ) : (
@@ -32,7 +31,7 @@ export const LogList = () => {
             <h2>Logs Table</h2>
           </div>
 
-          {data?.data.items.length > 0 ? (
+          {data?.data && data.data.items.length > 0 ? (
             <>
               {data && <LogTable logsData={data?.data.items} />}
 
@@ -64,7 +63,7 @@ export const LogList = () => {
                         : 'Active'
                     }
                     onClick={() => {
-                      if (currentPage === data?.data.numberOfPage) {
+                      if (currentPage === data?.data?.numberOfPage) {
                         return;
                       }
                       setCurrentPage((prevState) => prevState + 1);

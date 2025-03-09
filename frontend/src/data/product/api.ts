@@ -39,7 +39,7 @@ export const getProducts = async (params: {
     }
 
     const response = await axios.get<
-      SuccessResponse<GetProductsResData> | ErrorResponse
+      SuccessResponse<GetProductsResData> | ErrorResponse<GetProductsResData>
     >(url);
 
     return response.data;
@@ -53,10 +53,10 @@ export const getProducts = async (params: {
 
 export const getProductBYId = async (params: { id: string }) => {
   try {
-    let url = `${config.API_BASE_URL}/products/${params.id}`;
+    const url = `${config.API_BASE_URL}/products/${params.id}`;
 
     const response = await axios.get<
-      SuccessResponse<ProductResData> | ErrorResponse
+      SuccessResponse<ProductResData> | ErrorResponse<ProductResData>
     >(url);
 
     return response.data;
@@ -70,10 +70,10 @@ export const getProductBYId = async (params: { id: string }) => {
 
 export const addProduct = async (
   reqBody: ProductReqBody
-): Promise<SuccessResponse<ProductResData> | ErrorResponse> => {
+): Promise<SuccessResponse<ProductResData> | ErrorResponse<ProductResData>> => {
   try {
     const response = await axios.post<
-      SuccessResponse<ProductResData> | ErrorResponse
+      SuccessResponse<ProductResData> | ErrorResponse<ProductResData>
     >(`${config.API_BASE_URL}/products`, reqBody);
 
     return response.data;
@@ -88,10 +88,12 @@ export const addProduct = async (
 export const updateProduct = async (params: {
   id: string;
   reqBody: ProductReqBody;
-}): Promise<SuccessResponse<ProductResData> | ErrorResponse> => {
+}): Promise<
+  SuccessResponse<ProductResData> | ErrorResponse<ProductResData>
+> => {
   try {
     const response = await axios.put<
-      SuccessResponse<ProductResData> | ErrorResponse
+      SuccessResponse<ProductResData> | ErrorResponse<ProductResData>
     >(`${config.API_BASE_URL}/products/${params.id}`, params.reqBody);
 
     return response.data;
@@ -106,10 +108,12 @@ export const updateProduct = async (params: {
 export const updateProductStock = async (params: {
   id: string;
   reqBody: UpdateProductStockReqBody;
-}): Promise<SuccessResponse<ProductResData> | ErrorResponse> => {
+}): Promise<
+  SuccessResponse<ProductResData> | ErrorResponse<ProductResData>
+> => {
   try {
     const response = await axios.patch<
-      SuccessResponse<ProductResData> | ErrorResponse
+      SuccessResponse<ProductResData> | ErrorResponse<ProductResData>
     >(`${config.API_BASE_URL}/products/${params.id}/stock`, params.reqBody);
 
     return response.data;
@@ -123,10 +127,12 @@ export const updateProductStock = async (params: {
 
 export const deleteProduct = async (params: {
   id: number;
-}): Promise<SuccessResponse<ProductResData> | ErrorResponse> => {
+}): Promise<
+  SuccessResponse<ProductResData> | ErrorResponse<ProductResData>
+> => {
   try {
     const response = await axios.delete<
-      SuccessResponse<ProductResData> | ErrorResponse
+      SuccessResponse<ProductResData> | ErrorResponse<ProductResData>
     >(`${config.API_BASE_URL}/products/${params.id}`);
 
     return response.data;

@@ -51,7 +51,7 @@ export const UpdateForm = () => {
     }
   }, [data]);
 
-  const { mutate, isLoading, error } = useMutation({
+  const { mutate, isLoading } = useMutation({
     fn: updateProduct
   });
 
@@ -73,7 +73,7 @@ export const UpdateForm = () => {
         reqBody: formData
       },
       {
-        onSuccess: (data) => {
+        onSuccess: () => {
           toast.success('Product updated successfully!');
           router.push('/admin');
         },

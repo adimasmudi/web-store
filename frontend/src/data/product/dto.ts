@@ -18,7 +18,7 @@ export type ProductResData = {
   description: string;
   category: string;
   image_path: string;
-  stock: Number;
+  stock: number;
   created_at: string;
   updated_at: string;
 };

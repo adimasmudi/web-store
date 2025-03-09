@@ -11,9 +11,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Medikalm | Order Anywhere, Anytime',
+  title: 'Webstore | Order Anywhere, Anytime',
   description:
-    'Medikalm is an app for ordering medicines from the comfort of your home.'
+    'Webstore is an app for ordering thing from the comfort of your home.'
 };
 
 export default function RootLayout({

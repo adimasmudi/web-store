@@ -4,6 +4,7 @@ import { Trash2 } from 'lucide-react';
 import { useCart } from '@/context/cart';
 import { toast } from 'sonner';
 import styles from './styles.module.css';
+import Image from 'next/image';
 
 interface CartCardProps {
   data: ProductResData;
@@ -22,9 +23,11 @@ export const CartCard = ({ data }: CartCardProps) => {
     >
       <div className="flex flex-row gap-5 items-center w-[90%] md:w-1/3 lg:w-1/3 xl:w-1/3">
         <div className="flex flex-row items-center w-100">
-          <img
+          <Image
             src={data.image_path}
             alt={data.title}
+            width={200}
+            height={200}
             className="w-60 h-60 rounded-tl rounded-bl"
           />
         </div>

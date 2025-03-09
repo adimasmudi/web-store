@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import { UpdateStockDialogButton } from '../dialog/UpdateStockDialog';
 import { Dispatch, SetStateAction } from 'react';
 import styles from './styles.module.css';
+import Image from 'next/image';
 
 interface TableProps {
   productsData: ProductResData[];
@@ -53,9 +54,11 @@ export const ProductTable = ({
               <td
                 className={`border border-gray-300 px-4 py-2 ${styles['table-content']}`}
               >
-                <img
+                <Image
                   src={`${item.image_path}`}
                   alt={`${item.title}`}
+                  width={50}
+                  height={50}
                   className="w-8 h-8"
                 />
               </td>

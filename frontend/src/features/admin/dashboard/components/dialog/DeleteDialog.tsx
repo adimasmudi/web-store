@@ -28,7 +28,7 @@ export const DeleteDialogButton = ({
 }: DeleteDialogButtonProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const { mutate, isLoading, error } = useMutation({
+  const { mutate, isLoading } = useMutation({
     fn: deleteProduct
   });
   const handleDelete = () => {
@@ -37,7 +37,7 @@ export const DeleteDialogButton = ({
     mutate(
       { id: Number(id) },
       {
-        onSuccess: (data) => {
+        onSuccess: () => {
           toast.success('Item deleted successfully');
           setToggleRefetch((prevState) => !prevState);
         },
