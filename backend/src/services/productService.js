@@ -41,7 +41,7 @@ class ProductService {
     const productByTitle = await this.productRepository.getProductByTitle(
       requestBody.title
     );
-    if (productByTitle) {
+    if (productByTitle && productByTitle.id !== productById.id) {
       throw new Error(`product with title ${requestBody.title} already exist`);
     }
 

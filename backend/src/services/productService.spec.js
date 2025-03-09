@@ -140,7 +140,10 @@ describe('ProductService', function () {
 
     it('should return error if product with particular title already exist', async function () {
       repositories.productRepository.getProductById.resolves(product);
-      repositories.productRepository.getProductByTitle.resolves(product);
+      repositories.productRepository.getProductByTitle.resolves({
+        ...product,
+        id: 101
+      });
       const errorMessage = `product with title ${productInput.title} already exist`;
 
       await expect(
