@@ -12,10 +12,10 @@
   padding: 1rem;
 }
 
-button:hover {
+.btn-base:hover {
   cursor: pointer;
 }
 
-button:disabled {
+.btn-base:disabled {
   cursor: not-allowed;
 }
