@@ -84,6 +84,7 @@ export const CreateForm = () => {
                   type="number"
                   value={formData.price || ''}
                   onChange={handleChange}
+                  step="any"
                   min="0"
                 />
               </div>

@@ -111,6 +111,7 @@ export const UpdateForm = () => {
                   value={formData.price || ''}
                   onChange={handleChange}
                   min="0"
+                  step="any"
                 />
               </div>
               <div className="h-14 w-56">

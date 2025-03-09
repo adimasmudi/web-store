@@ -60,6 +60,8 @@ export const ProductList = () => {
               <Select
                 onValueChange={(val) => {
                   if (val === 'select_all') {
+                    setSearchTemp('');
+                    setSearch('');
                     setCategory('');
                     return;
                   }

@@ -68,6 +68,11 @@ export const ProductList = () => {
     setProducts([]);
     setCurrentPage(1);
     setHasMore(true);
+
+    console.log('cat', category);
+    if (category === '' && searchTemp === '') {
+      setSearch('');
+    }
   }, [search, category]);
 
   return (
