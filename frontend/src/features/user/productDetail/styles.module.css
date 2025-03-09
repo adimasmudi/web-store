@@ -1,0 +1,18 @@
+.padding-half {
+  padding: 0.5rem;
+}
+.padding-1 {
+  padding: 1rem;
+}
+
+.padding-2 {
+  padding: 1.5rem;
+}
+
+.margin-b-1 {
+  margin-bottom: 1rem;
+}
+
+.margin-t-1 {
+  margin-top: 1rem;
+}

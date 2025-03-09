@@ -14,7 +14,7 @@ import {
   SelectValue
 } from '@/shadcn/components/ui/select';
 import { PRODUCT_CATEGORIES } from '@/types/constants';
-import { getProductBYId, updateProduct } from '@/data/product/api';
+import { getProductById, updateProduct } from '@/data/product/api';
 import { useMutation } from '@/hooks/useMutation';
 import { useParams, useRouter } from 'next/navigation';
 import { Label } from '@/shadcn/components/ui/label';
@@ -35,7 +35,7 @@ export const UpdateForm = () => {
   });
 
   const { data } = useFetch({
-    fn: getProductBYId,
+    fn: getProductById,
     params: { id: id }
   });
 

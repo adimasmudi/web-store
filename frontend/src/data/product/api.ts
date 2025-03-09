@@ -51,7 +51,7 @@ export const getProducts = async (params: {
   }
 };
 
-export const getProductBYId = async (params: { id: string }) => {
+export const getProductById = async (params: { id: string }) => {
   try {
     const url = `${config.API_BASE_URL}/products/${params.id}`;
 

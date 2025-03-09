@@ -8,12 +8,14 @@ import { toast } from 'sonner';
 import styles from './styles.module.css';
 import Image from 'next/image';
 import { sendGAEvent } from '@next/third-parties/google';
+import { useRouter } from 'next/navigation';
 
 interface ProductCardProps {
   data: ProductResData;
 }
 
 export const ProductCard = ({ data }: ProductCardProps) => {
+  const router = useRouter();
   const { addToCart } = useCart();
   const handleAddToCart = () => {
     toast.success('Item added to cart successfully');
@@ -22,7 +24,10 @@ export const ProductCard = ({ data }: ProductCardProps) => {
     sendGAEvent('event', 'added to cart', { value: data });
   };
   return (
-    <Card className="cursor-pointer">
+    <Card
+      className="cursor-pointer"
+      onClick={() => router.push(`/product/${data.id}`)}
+    >
       <div className="rounded">
         <div className="relative p-4 h-64 overflow-hidden rounded-xl bg-clip-border">
           <Image
