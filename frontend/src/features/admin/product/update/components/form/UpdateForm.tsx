@@ -152,13 +152,14 @@ export const UpdateForm = () => {
                   onChange={handleChange}
                 />
               </div>
-              <div className="h-30">
+              <div className="h-30 w-56">
                 <Label htmlFor="description">Description</Label>
                 <Textarea
                   placeholder="Enter description"
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
+                  className="max-h-27 overflow-y-auto resize-y"
                 />
               </div>
             </div>
