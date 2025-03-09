@@ -3,7 +3,6 @@
 import { Navbar } from '@/components/navbar/Navbar';
 import Image from 'next/image';
 import styles from './styles.module.css';
-import { getProductData } from './data/fetch';
 import { AppButton } from '@/components/button/Button';
 import { ShoppingCart } from 'lucide-react';
 import { useFetch } from '@/hooks/useFetch';
