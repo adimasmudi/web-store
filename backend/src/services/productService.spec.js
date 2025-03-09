@@ -121,6 +121,7 @@ describe('ProductService', function () {
   describe('updateProduct', function () {
     it('should return product data', async function () {
       repositories.productRepository.getProductById.resolves(product);
+      repositories.productRepository.getProductByTitle.resolves(undefined);
       repositories.productRepository.updateProduct.resolves(product);
 
       const result = await productService.updateProduct(productInput, 1);
@@ -131,6 +132,16 @@ describe('ProductService', function () {
     it('should return error if product with particular id does not exist', async function () {
       repositories.productRepository.getProductById.resolves(undefined);
       const errorMessage = `product with id 1 doesn't exist`;
+
+      await expect(
+        productService.updateProduct(productInput, 1)
+      ).to.be.rejectedWith(errorMessage);
+    });
+
+    it('should return error if product with particular title already exist', async function () {
+      repositories.productRepository.getProductById.resolves(product);
+      repositories.productRepository.getProductByTitle.resolves(product);
+      const errorMessage = `product with title ${productInput.title} already exist`;
 
       await expect(
         productService.updateProduct(productInput, 1)

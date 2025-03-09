@@ -33,10 +33,18 @@ class ProductService {
   }
 
   async updateProduct(requestBody, id) {
-    const product = await this.productRepository.getProductById(id);
-    if (!product) {
+    const productById = await this.productRepository.getProductById(id);
+    if (!productById) {
       throw new Error(`product with id ${id} doesn't exist`);
     }
+
+    const productByTitle = await this.productRepository.getProductByTitle(
+      requestBody.title
+    );
+    if (productByTitle) {
+      throw new Error(`product with title ${requestBody.title} already exist`);
+    }
+
     return this.productRepository.updateProduct(requestBody, id);
   }
 
