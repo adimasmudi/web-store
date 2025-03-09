@@ -20,7 +20,9 @@ export const CheckoutSummaryCard = ({ products }: CheckoutSummaryCardProps) => {
   };
 
   return (
-    <Card className={`w-100 sticky top-5 ${styles['padding-1']}`}>
+    <Card
+      className={`w-full lg:w-100 xl:w-100 sticky top-5 ${styles['padding-1']}`}
+    >
       <p className="font-bold mb-4">Order Summary</p>
       <div className="flex flex-col gap-1">
         <div className="flex justify-between">

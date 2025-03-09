@@ -8,7 +8,9 @@ interface CheckoutProductCardProps {
 }
 export const CheckoutProductCard = ({ products }: CheckoutProductCardProps) => {
   return (
-    <Card className={styles['padding-1']}>
+    <Card
+      className={`w-full lg:max-w-[80%] xl:max-w-[80%] ${styles['padding-1']}`}
+    >
       <div className="flex gap-2 mb-4">
         <p className="font-bold line-clamp-1">List Of Products</p>
       </div>
