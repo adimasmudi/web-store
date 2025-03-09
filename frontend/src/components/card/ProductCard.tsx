@@ -7,6 +7,7 @@ import { ProductResData } from '@/data/product/dto';
 import { toast } from 'sonner';
 import styles from './styles.module.css';
 import Image from 'next/image';
+import { sendGAEvent } from '@next/third-parties/google';
 
 interface ProductCardProps {
   data: ProductResData;
@@ -17,6 +18,8 @@ export const ProductCard = ({ data }: ProductCardProps) => {
   const handleAddToCart = () => {
     toast.success('Item added to cart successfully');
     addToCart(data);
+
+    sendGAEvent('event', 'added to cart', { value: data });
   };
   return (
     <Card className="cursor-pointer">

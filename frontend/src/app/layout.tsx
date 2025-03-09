@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google';
 import './main.css';
 import { CartProvider } from '@/context/cart';
 import { Toaster } from '@/shadcn/components/ui/sonner';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const poppins = Poppins({
   variable: '--font-poppins',
@@ -27,6 +28,7 @@ export default function RootLayout({
         <CartProvider>{children}</CartProvider>
         <Toaster richColors />
       </body>
+      <GoogleAnalytics gaId={`${process.env.NEXT_PUBLIC_GA_ID}`} />
     </html>
   );
 }

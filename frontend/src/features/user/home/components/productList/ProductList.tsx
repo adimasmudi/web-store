@@ -71,7 +71,6 @@ export const ProductList = () => {
     setCurrentPage(1);
     setHasMore(true);
 
-    console.log('cat', category);
     if (category === '' && searchTemp === '') {
       setSearch('');
     }
